@@ -299,6 +299,14 @@ img.scene.contain{object-fit:contain;background:#0b1715}
 .map-pop .pad{padding:1rem 1.1rem 1.15rem;display:grid;gap:.5rem}
 .map-pop h3{font-size:1.1rem}
 .map-pop p{font-size:.84rem;color:var(--muted)}
+.map-pop{max-height:calc(100% - 32px);overflow:auto;overscroll-behavior:contain}
+.map-pop .pop-cat{justify-self:start;font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--green-deep,#0d6f5f)}
+.map-pop .pop-loc{display:flex;gap:.35rem;align-items:flex-start;color:var(--fg);font-weight:500}
+.map-pop .pop-loc .icon{flex:none;width:15px;height:15px;margin-top:.1rem;stroke:#139782}
+.pop-feat{list-style:none;margin:.1rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.3rem}
+.pop-feat li{font-size:.7rem;font-weight:600;padding:.28rem .55rem;border-radius:999px;background:#e6f4f1;color:#0d6f5f}
+.pop-note{font-size:.68rem;color:var(--muted)}
+@media (max-width:620px){.map-pop .pop-note{display:none}.map-pop .pad > p:not(.pop-loc){display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}}
 .map-pop .close{position:absolute;right:10px;top:10px;width:34px;height:34px;border-radius:50%;border:0;background:rgba(11,23,21,.5);color:#fff;cursor:pointer;display:grid;place-items:center}
 .prov{fill:#4a5b75;stroke:#fff;stroke-width:1;stroke-linejoin:round;vector-effect:non-scaling-stroke;transition:fill .5s var(--ease)}
 .prov.hl{fill:#139782}
@@ -362,16 +370,74 @@ img.scene.contain{object-fit:contain;background:#0b1715}
 .ierr{font-size:.76rem;color:var(--err)}
 .inv-foot{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;padding-top:.3rem}
 .inv-foot small{color:var(--muted);font-size:.78rem;max-width:36ch}
-#inv-send{background:#25d366}
-#inv-send:hover{background:#1fb457;box-shadow:0 10px 30px -10px rgba(37,211,102,.7)}
+/* Formulario de inversionistas con el mismo diseño que el de contacto (panel de vidrio oscuro) */
+.inv .inv-card{background:rgba(255,255,255,.08);color:var(--on-ink);border:1px solid rgba(255,255,255,.18);-webkit-backdrop-filter:blur(24px) saturate(130%);backdrop-filter:blur(24px) saturate(130%);box-shadow:0 40px 80px -40px rgba(0,0,0,.6);padding:clamp(22px,3.2vw,44px)}
+.inv .inv-card::before{display:none}
+.inv .inv-card-head{border-bottom-color:rgba(255,255,255,.14)}
+.inv .inv-card-head h3{color:#fff}.inv .inv-card-head p{color:var(--on-ink-muted)}
+.inv .inv-step{background:rgba(95,208,187,.16);color:#5fd0bb}
+.inv .ifield label{color:var(--on-ink)}
+.inv .ifield label .req{color:#5fd0bb}
+.inv .ifield input,.inv .ifield select,.inv .ifield textarea{min-height:50px;border:1px solid rgba(255,255,255,.2);background:rgba(8,18,16,.45);color:#fff;padding:.75rem .95rem}
+.inv .ifield textarea{min-height:120px}
+.inv .ifield select option{background:#13231f;color:#fff}
+.inv .ifield input::placeholder,.inv .ifield textarea::placeholder{color:rgba(255,255,255,.42)}
+.inv .ifield input:focus,.inv .ifield select:focus,.inv .ifield textarea:focus{border-color:#5fd0bb;box-shadow:0 0 0 3px rgba(95,208,187,.2);background:rgba(8,18,16,.6)}
+.inv .ifield.invalid input,.inv .ifield.invalid select{border-color:#f97066}
+.inv .ierr{color:#fda29b}
+.inv .inv-foot small{color:var(--on-ink-muted)}
+.inv .inv-status{background:rgba(95,208,187,.14);color:#bff3e8}
+.inv .inv-status.bad{background:rgba(249,112,102,.14);color:#fda29b}
 .inv-status{font-size:.86rem;padding:.8rem 1rem;border-radius:12px;background:var(--green-mist);color:var(--green-deep);margin:0}
 .inv-status.bad{background:#fef3f2;color:var(--err)}
 @media (max-width:960px){.inv-head,.inv-grid{grid-template-columns:1fr}.inv-photo{min-height:520px}}
 @media (max-width:560px){.inv-fields{grid-template-columns:1fr}#inv-send{width:100%}.inv-stats{grid-template-columns:1fr}.inv-stats div + div{padding-left:0;border-left:0;border-top:1px solid rgba(255,255,255,.14)}.inv-stats div{padding:.9rem 0}}
 
 /* ============ BEFORE / AFTER ============ */
+.detail-main > :first-child{margin-top:0}
 .detail-ba{margin-top:1.4rem;display:grid;gap:.6rem}
 .detail-ba h3{font-size:.95rem}
+/* ---------- Firmas: coverflow 3D ---------- */
+.cf{position:relative;overflow:hidden;background:#07110f;color:#fff;padding:clamp(64px,9vw,110px) 0 clamp(56px,7vw,90px);isolation:isolate;user-select:none;outline:none}
+.cf-amb{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.cf-amb img{width:100%;height:100%;object-fit:cover;filter:brightness(.24) blur(34px) saturate(1.1);transform:scale(1.15);transition:opacity .9s ease}
+.cf-amb::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(7,17,15,.25) 0%,rgba(7,17,15,.93) 100%)}
+.cf-wrap{position:relative;display:flex;flex-direction:column;align-items:center}
+.cf-head{display:grid;justify-items:center;gap:.9rem;text-align:center;margin-bottom:clamp(20px,3vw,34px)}
+.cf-eyebrow{display:inline-flex;align-items:center;gap:.8rem;font-size:.74rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#5fd0bb}
+.cf-eyebrow i{width:36px;height:1px;background:linear-gradient(90deg,transparent,#5fd0bb)}
+.cf-eyebrow i:last-child{background:linear-gradient(90deg,#5fd0bb,transparent)}
+.cf-head h2{font-size:var(--s-2xl);font-weight:600;letter-spacing:-.03em;line-height:1.08;max-width:22ch}
+.cf-head h2 em{font-style:italic;font-weight:300;color:#9fe6d6}
+.cf-stage{position:relative;width:100%;height:clamp(470px,58vw,540px);display:flex;align-items:center;justify-content:center;perspective:1400px;margin-bottom:clamp(18px,3vw,30px)}
+.cf-card{position:absolute;width:min(340px,74vw);aspect-ratio:4/5.1;border-radius:18px;overflow:hidden;background:#0f1c19;border:1px solid rgba(255,255,255,.12);transform-origin:center;transition:transform .8s cubic-bezier(.25,1,.5,1),opacity .8s cubic-bezier(.25,1,.5,1),filter .8s ease,box-shadow .8s ease;box-shadow:0 15px 35px rgba(0,0,0,.5);cursor:pointer;will-change:transform}
+.cf-card.is-center{cursor:default;box-shadow:0 25px 60px rgba(0,0,0,.9),0 0 38px rgba(95,208,187,.22)}
+.cf-card > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;max-width:none}
+.cf-shade{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.05) 28%,rgba(0,0,0,.6) 62%,rgba(0,0,0,.95) 100%)}
+.cf-body{position:relative;z-index:2;height:100%;padding:18px 18px 22px;display:flex;flex-direction:column;justify-content:space-between;text-align:center;opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;pointer-events:none}
+.cf-card.is-center .cf-body{opacity:1;transform:none;pointer-events:auto}
+.cf-tag{align-self:flex-end;font-size:.76rem;font-weight:600;letter-spacing:.06em;color:rgba(255,255,255,.92);text-shadow:0 2px 6px rgba(0,0,0,.8);background:rgba(7,17,15,.45);padding:.3rem .65rem;border-radius:999px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.cf-txt{display:flex;flex-direction:column;align-items:center;gap:3px}
+.cf-txt h3{font-size:1.5rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;line-height:1.1;text-shadow:0 3px 12px rgba(0,0,0,.95)}
+.cf-t2{font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#eaf7f4;text-shadow:0 3px 10px rgba(0,0,0,.9)}
+.cf-bar{width:34px;height:2px;border-radius:2px;background:#5fd0bb;margin:6px auto 5px;box-shadow:0 0 8px rgba(95,208,187,.7)}
+.cf-txt p{font-size:.82rem;font-style:italic;color:rgba(255,255,255,.9);max-width:280px;margin:0 0 12px;line-height:1.35;text-shadow:0 2px 8px rgba(0,0,0,.9)}
+.cf-cta{display:inline-flex;align-items:center;gap:6px;padding:.55rem 1.15rem;border-radius:999px;border:0;background:linear-gradient(135deg,#5fd0bb 0%,#139782 100%);color:#04110e;font-family:inherit;font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.4),0 0 15px rgba(95,208,187,.3);transition:transform .2s ease,box-shadow .2s ease}
+.cf-cta:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.45),0 0 22px rgba(95,208,187,.45)}
+.cf-nav{position:absolute;top:calc(50% + 30px);transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.2);color:#fff;display:grid;place-items:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:40;transition:background .2s,border-color .2s}
+.cf-nav:hover{background:#139782;border-color:#139782}
+.cf-nav.prev{left:clamp(0px,2vw,24px)}.cf-nav.next{right:clamp(0px,2vw,24px)}
+.cf-dots{display:flex;gap:8px;justify-content:center}
+.cf-dots button{height:8px;width:8px;border-radius:999px;border:0;padding:0;background:rgba(255,255,255,.25);cursor:pointer;transition:all .3s ease}
+.cf-dots button[aria-selected="true"]{width:28px;background:#5fd0bb;box-shadow:0 0 10px rgba(95,208,187,.7)}
+@media (max-width:700px){.cf-nav{top:auto;bottom:-6px;transform:none}.cf-nav.prev{left:16px}.cf-nav.next{right:16px}.cf-dots{min-height:46px;align-items:center}.cf-txt h3{font-size:1.25rem}}
+/* ---------- Visor de imagen (diálogo propio, siempre a pantalla completa) ---------- */
+dialog#viewer{max-width:none;max-height:none;width:100vw;height:100vh;height:100dvh;margin:0;border-radius:0;background:rgba(6,12,11,.96);color:#fff;overflow:hidden;box-shadow:none}
+dialog#viewer[open]{display:grid;place-items:center;animation:none}
+dialog#viewer::backdrop{background:rgba(6,12,11,.9)}
+#viewer .vw-stage{width:min(96vw,1600px);height:calc(100vh - 120px);height:calc(100dvh - 120px)}
+#viewer .vw-stage{display:flex;align-items:center;justify-content:center}
+#viewer .vw-stage img{width:auto;height:auto;max-width:100%;max-height:calc(100vh - 120px);max-height:calc(100dvh - 120px)}
 .detail-ret{margin-top:1.4rem;display:grid;gap:.7rem}
 .detail-ret h3{font-size:.95rem}.detail-ret h4{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green-deep,#0d6f5f);margin-top:.4rem}
 .ret-table{border:1px solid #dfe6e4;border-radius:var(--r);overflow:hidden}
@@ -620,7 +686,6 @@ dialog[open]{animation:dlg .55s var(--ease)}
       <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
       <a href="#inversionistas" data-i18n="nav.investors">Inversionistas</a>
       <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
-      <a href="#contacto" data-i18n="nav.contact">Contacto</a>
     </nav>
     <div class="header-tools">
       <div class="lang" role="group" aria-label="Idioma / Language">
@@ -638,7 +703,6 @@ dialog[open]{animation:dlg .55s var(--ease)}
     <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
     <a href="#inversionistas" data-i18n="nav.investors">Inversionistas</a>
     <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
-    <a href="#contacto" data-i18n="nav.contact">Contacto</a>
   </nav>
   <a class="btn btn-primary" href="#proyectos" data-i18n="cta.explore">Explorar oportunidades</a>
 </div>
@@ -663,17 +727,18 @@ dialog[open]{animation:dlg .55s var(--ease)}
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section class="section" id="proyectos" aria-labelledby="proj-title">
-  <div class="wrap">
-    <div class="proj-head">
-      <div class="section-head rv">
-        <span class="eyebrow" id="proj-title" data-i18n="proj.eyebrow">Proyectos</span>
-        <p data-i18n="proj.desc">Cada ficha reúne ubicación, concepto y la documentación que Bapersa ha publicado. Los precios publicados son referenciales y la disponibilidad se confirma con un asesor.</p>
-      </div>
-      <a class="btn btn-line rv" href="#mapa"><svg class="icon sm" viewBox="0 0 24 24"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg><span data-i18n="proj.mapBtn">Ver en el mapa</span></a>
+<!-- PROYECTOS: FIRMAS (coverflow 3D) -->
+<section class="cf" id="proyectos" aria-labelledby="cf-title" aria-roledescription="carrusel" tabindex="-1">
+  <div class="cf-amb" aria-hidden="true"><img id="cf-amb" alt=""></div>
+  <div class="wrap cf-wrap">
+    <div class="cf-head rv">
+      <span class="cf-eyebrow"><i></i><span data-i18n="cf.eyebrow">Firmas realizadas</span><i></i></span>
+      <h2 id="cf-title" data-i18n-html="cf.titleHtml">Clientes que ya <em>aseguraron su inversión.</em></h2>
     </div>
-    <div class="proj-grid" id="proj-grid"></div>
+    <div class="cf-stage" id="cf-stage"></div>
+    <button class="cf-nav prev" type="button" id="cf-prev" data-i18n-aria="hero.prev" aria-label="Anterior"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button>
+    <button class="cf-nav next" type="button" id="cf-next" data-i18n-aria="hero.next" aria-label="Siguiente"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    <div class="cf-dots" id="cf-dots" role="tablist"></div>
   </div>
 </section>
 
@@ -718,7 +783,7 @@ dialog[open]{animation:dlg .55s var(--ease)}
     <div class="inv-head rv">
       <div class="inv-head-txt">
         <span class="eyebrow" data-i18n="inv.eyebrow">Inversionistas</span>
-        <h2 id="inv-title" data-i18n-html="inv.titleHtml">Invierte en lotes y terrenos <em>en Ecuador.</em></h2>
+        <h2 id="inv-title" data-i18n-html="inv.titleHtml">Inversión inmobiliaria <em>con visión de futuro.</em></h2>
         <p data-i18n="inv.desc">Cuéntanos qué buscas y un asesor de inversiones te escribe por WhatsApp con las opciones que se ajustan a tu perfil.</p>
       </div>
       <dl class="inv-stats">
@@ -745,12 +810,12 @@ dialog[open]{animation:dlg .55s var(--ease)}
           <div><h3 data-i18n="inv.formT">Solicita tu asesoría de inversión</h3><p data-i18n="inv.formD">Completa el formulario y te respondemos por WhatsApp.</p></div>
         </div>
         <div class="inv-fields">
-          <div class="ifield"><label for="i-name"><span data-i18n="f.name">Nombre completo</span> *</label><input id="i-name" autocomplete="name" required><span class="ierr" id="ie-name"></span></div>
-          <div class="ifield"><label for="i-country"><span data-i18n="f.country">País de residencia</span> *</label><input id="i-country" list="countries" autocomplete="country-name" required><span class="ierr" id="ie-country"></span></div>
-          <div class="ifield"><label for="i-phone"><span data-i18n="inv.phone">WhatsApp o teléfono</span> *</label><input id="i-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+593 99 999 9999" required><span class="ierr" id="ie-phone"></span></div>
+          <div class="ifield"><label for="i-name"><span data-i18n="f.name">Nombre completo</span> <span class="req">*</span></label><input id="i-name" autocomplete="name" required><span class="ierr" id="ie-name"></span></div>
+          <div class="ifield"><label for="i-country"><span data-i18n="f.country">País de residencia</span> <span class="req">*</span></label><input id="i-country" list="countries" autocomplete="country-name" required><datalist id="countries"></datalist><span class="ierr" id="ie-country"></span></div>
+          <div class="ifield"><label for="i-phone"><span data-i18n="inv.phone">WhatsApp o teléfono</span> <span class="req">*</span></label><input id="i-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+593 99 999 9999" required><span class="ierr" id="ie-phone"></span></div>
           <div class="ifield"><label for="i-email" data-i18n="f.email">Correo electrónico</label><input id="i-email" type="email" inputmode="email" autocomplete="email"><span class="ierr" id="ie-email"></span></div>
-          <div class="ifield"><label for="i-project"><span data-i18n="f.project">Proyecto de interés</span> *</label><select id="i-project" required></select><span class="ierr" id="ie-project"></span></div>
-          <div class="ifield"><label for="i-budget"><span data-i18n="inv.budget">Monto aproximado a invertir</span> *</label><select id="i-budget" required></select><span class="ierr" id="ie-budget"></span></div>
+          <div class="ifield"><label for="i-project"><span data-i18n="f.project">Proyecto de interés</span> <span class="req">*</span></label><select id="i-project" required></select><span class="ierr" id="ie-project"></span></div>
+          <div class="ifield"><label for="i-budget"><span data-i18n="inv.budget">Monto aproximado a invertir</span> <span class="req">*</span></label><select id="i-budget" required></select><span class="ierr" id="ie-budget"></span></div>
             <div class="ifield full"><label for="i-goal" data-i18n="inv.goal">Objetivo</label><select id="i-goal"></select></div>
           <div class="ifield full"><label for="i-msg" data-i18n="f.msg">Mensaje</label><textarea id="i-msg" maxlength="800"></textarea></div>
         </div>
@@ -787,39 +852,6 @@ dialog[open]{animation:dlg .55s var(--ease)}
 <!-- TESTIMONIALS -->
 
 <!-- CTA + FORM -->
-<section class="section on-ink cta" id="contacto" aria-labelledby="cta-title">
-  <div class="bg" id="cta-bg" aria-hidden="true"></div>
-  <div class="wrap cta-grid">
-    <div class="cta-left rv">
-      <span class="eyebrow" data-i18n="cta.eyebrow">Contáctanos</span>
-      <h2 id="cta-title" data-i18n="cta.title">Solicita información.</h2>
-      <p data-i18n="cta.desc">Conoce nuestros proyectos, solicita información documental y recibe atención personalizada desde Ecuador, estés donde estés.</p>
-      <div class="contact-list" id="wa-box"></div>
-    </div>
-    <div class="form-panel rv">
-      <form id="lead-form" novalidate>
-        <div class="form-grid">
-          <div class="field"><label for="f-name"><span data-i18n="f.name">Nombre completo</span> <span class="req">*</span></label><input id="f-name" name="name" autocomplete="name" required><span class="err" id="e-name"></span></div>
-          <div class="field"><label for="f-email"><span data-i18n="f.email">Correo electrónico</span> <span class="req">*</span></label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required><span class="err" id="e-email"></span></div>
-          <div class="field"><label for="f-country"><span data-i18n="f.country">País de residencia</span> <span class="req">*</span></label><input id="f-country" name="country" list="countries" autocomplete="country-name" required><datalist id="countries"></datalist><span class="err" id="e-country"></span></div>
-          <div class="field"><label for="f-phone"><span data-i18n="f.phone">Teléfono</span> <span class="req">*</span></label>
-            <div class="phone"><select id="f-prefix" name="prefix" data-i18n-aria="f.prefix" aria-label="Prefijo internacional"></select><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" required></div><span class="err" id="e-phone"></span></div>
-          <div class="field"><label for="f-project"><span data-i18n="f.project">Proyecto de interés</span> <span class="req">*</span></label><select id="f-project" name="project" required></select><span class="err" id="e-project"></span></div>
-          <div class="field"><label for="f-type"><span data-i18n="f.type">Tipo de consulta</span> <span class="req">*</span></label><select id="f-type" name="type" required></select><span class="err" id="e-type"></span></div>
-          <div class="field full"><label for="f-msg" data-i18n="f.msg">Mensaje</label><textarea id="f-msg" name="message" maxlength="1500"></textarea><span class="err" id="e-msg"></span></div>
-          <div class="hp" aria-hidden="true"><label for="f-web">Web</label><input id="f-web" name="website" tabindex="-1" autocomplete="off"></div>
-          <label class="check" for="f-privacy"><input type="checkbox" id="f-privacy" name="privacy" required><span><span data-i18n="f.privacy">Acepto el tratamiento de mis datos personales para atender esta solicitud, conforme a la</span> <button type="button" data-info="privacy" data-i18n="f.privacyLink">política de privacidad</button>.</span></label>
-          <span class="err" id="e-privacy" style="grid-column:1/-1;color:#fda29b;font-size:.78rem;margin-top:-.6rem"></span>
-          <div class="form-status" id="form-status" hidden></div>
-          <div class="form-foot">
-            <small data-i18n="f.note">Campos con * obligatorios. Usamos tus datos solo para responder a esta solicitud.</small>
-            <button class="btn btn-primary" type="submit" id="f-submit"><span data-i18n="f.submit">Solicitar información</span><svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</section>
 
 <!-- FAQ -->
 </main>
@@ -835,8 +867,7 @@ dialog[open]{animation:dlg .55s var(--ease)}
         <li><a href="#inicio" data-i18n="nav.home">Inicio</a></li>
         <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
         <li><a href="#nosotros" data-i18n="foot.about">Sobre nosotros</a></li>
-        <li><a href="#inversionistas" data-i18n="nav.investors">Inversionistas</a></li>
-        <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li></ul></div>
+        <li><a href="#inversionistas" data-i18n="nav.investors">Inversionistas</a></li></ul></div>
       <div><h4 data-i18n="foot.projects">Proyectos</h4><ul id="foot-projects"></ul></div>
       <div><h4 data-i18n="foot.contact">Contacto</h4><div style="display:grid;gap:.9rem" id="foot-contact"></div></div>
     </div>
@@ -860,6 +891,7 @@ dialog[open]{animation:dlg .55s var(--ease)}
 <button class="to-top" id="to-top" type="button" data-i18n-aria="foot.top" aria-label="Volver arriba"><svg class="icon" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
 
 <dialog id="detail" aria-labelledby="d-title"></dialog>
+<dialog id="viewer" class="viewer-dlg" aria-label="Visor de imagen"></dialog>
 <dialog id="info" class="info-dlg" aria-labelledby="i-title"></dialog>
 
 <script>
@@ -993,7 +1025,7 @@ const FAQ = [
    ===================================================================== */
 const I18N = {
  es:{
-  "nav.investors":"Inversionistas","inv.eyebrow":"Inversionistas","inv.title":"Invierte en lotes y terrenos en Ecuador.","inv.desc":"Cuéntanos qué buscas y un asesor de inversiones te escribe por WhatsApp con las opciones que se ajustan a tu perfil.","inv.p1":"Proyectos activos en la costa y en el Valle de los Chillos","inv.p2":"Crédito directo y planes de pago flexibles","inv.p3":"Atención virtual si inviertes desde el extranjero","inv.phone":"WhatsApp o teléfono","inv.budget":"Monto aproximado a invertir","inv.pay":"Forma de pago","inv.goal":"Objetivo","inv.note":"Al enviar se abre WhatsApp con tu solicitud lista. Solo debes pulsar enviar.","inv.send":"Enviar por WhatsApp","inv.opened":"Se abrió WhatsApp con tu solicitud. Si no se abrió, escríbenos al +593 98 461 8576.","inv.vphone":"Escribe un número válido (con código de país si estás fuera de Ecuador).","b1":"Hasta USD 20.000","b2":"USD 20.000 – 50.000","b3":"USD 50.000 – 100.000","b4":"Más de USD 100.000","pay1":"Contado","pay2":"Crédito directo","pay3":"Por definir","g1":"Construir vivienda","g2":"Inversión / plusvalía","g3":"Alquiler vacacional","g4":"Otro","ba.eyebrow":"Avance de obra","ba.title":"Antes y ahora","ba.before":"Antes","ba.after":"Ahora","ba.drag":"Deslizar para comparar antes y ahora","inv.titleHtml":"Invierte en lotes y terrenos <em>en Ecuador.</em>","inv.s1":"proyectos activos","inv.s2":"precio de entrada","inv.s3":"meses de financiamiento máximo","inv.why":"Por qué invertir con Bapersa","inv.formT":"Solicita tu asesoría de inversión","inv.formD":"Completa el formulario y te respondemos por WhatsApp.","ba.soon":"Fotos de antes y ahora en preparación.","k.plan":"Plano del proyecto","vw.open":"Ver en grande","vw.label":"Visor de imagen","vw.hint":"Toca o haz clic para acercar · desliza para recorrer · Esc o ✕ para cerrar","d.tour":"Recorrido 360°","d.web":"Sitio web","hi.tag":"Inversionistas","hi.title":"Invierte en tierra <em>con respaldo.</em>","hi.desc":"Lotes y terrenos en la costa y en los valles de Ecuador, con crédito directo y un asesor de inversión que te acompaña en todo el proceso.","hi.c1":"Quiero invertir","hi.c2":"Ver proyectos","hi.from":"USD 16.500","s0.label":"Inversionistas","s0.tag":"Inversionistas","s0.title":"Haz crecer tu capital <em>con Bapersa.</em>","s0.desc":"Rendimientos de hasta 30% en 12 meses, con acompañamiento profesional y transparencia en todo el proceso.","s0.c1":"Quiero invertir","s0.c2":"Ver proyectos","rt.title":"Tabla de inversiones","rt.amount":"Monto de inversión","rt.rate":"Rendimiento","rt.term":"Tiempo para la rentabilidad","rt.benefits":"Beneficios","rt.note":"Según la propuesta de inversión de Bapersa. Las condiciones se detallan en el contrato; confírmalas con un asesor antes de invertir.","ct.wa":"WhatsApp · Atención al cliente","ct.inv":"WhatsApp · Inversiones","ct.mail":"Correo","ct.addr":"Oficina","nav.home":"Inicio","nav.projects":"Proyectos","nav.legal":"Seguridad jurídica","nav.locations":"Ubicaciones","nav.about":"Nosotros","nav.contact":"Contacto","nav.menu":"Abrir menú",
+  "nav.investors":"Inversionistas","inv.eyebrow":"Inversionistas","inv.title":"Inversión inmobiliaria con visión de futuro.","inv.desc":"Cuéntanos qué buscas y un asesor de inversiones te escribe por WhatsApp con las opciones que se ajustan a tu perfil.","inv.p1":"Proyectos activos en la costa y en el Valle de los Chillos","inv.p2":"Crédito directo y planes de pago flexibles","inv.p3":"Atención virtual si inviertes desde el extranjero","inv.phone":"WhatsApp o teléfono","inv.budget":"Monto aproximado a invertir","inv.pay":"Forma de pago","inv.goal":"Objetivo","inv.note":"Al enviar se abre WhatsApp con tu solicitud lista. Solo debes pulsar enviar.","inv.send":"Enviar por WhatsApp","inv.opened":"Se abrió WhatsApp con tu solicitud. Si no se abrió, escríbenos al +593 98 461 8576.","inv.vphone":"Escribe un número válido (con código de país si estás fuera de Ecuador).","b1":"Hasta USD 20.000","b2":"USD 20.000 – 50.000","b3":"USD 50.000 – 100.000","b4":"Más de USD 100.000","pay1":"Contado","pay2":"Crédito directo","pay3":"Por definir","g1":"Construir vivienda","g2":"Inversión / plusvalía","g3":"Alquiler vacacional","g4":"Otro","ba.eyebrow":"Avance de obra","ba.title":"Antes y ahora","ba.before":"Antes","ba.after":"Ahora","ba.drag":"Deslizar para comparar antes y ahora","inv.titleHtml":"Inversión inmobiliaria <em>con visión de futuro.</em>","inv.s1":"proyectos activos","inv.s2":"precio de entrada","inv.s3":"meses de financiamiento máximo","inv.why":"Por qué invertir con Bapersa","inv.formT":"Solicita tu asesoría de inversión","inv.formD":"Completa el formulario y te respondemos por WhatsApp.","ba.soon":"Fotos de antes y ahora en preparación.","k.plan":"Plano del proyecto","vw.open":"Ver en grande","vw.label":"Visor de imagen","vw.hint":"Toca o haz clic para acercar · desliza para recorrer · Esc o ✕ para cerrar","d.tour":"Recorrido 360°","d.web":"Sitio web","hi.tag":"Inversionistas","hi.title":"Invierte en tierra <em>con respaldo.</em>","hi.desc":"Lotes y terrenos en la costa y en los valles de Ecuador, con crédito directo y un asesor de inversión que te acompaña en todo el proceso.","hi.c1":"Quiero invertir","hi.c2":"Ver proyectos","hi.from":"USD 16.500","s0.label":"Inversionistas","s0.tag":"Inversionistas","s0.title":"Haz crecer tu capital <em>con Bapersa.</em>","s0.desc":"Rendimientos de hasta 30% en 12 meses, con acompañamiento profesional y transparencia en todo el proceso.","s0.c1":"Quiero invertir","s0.c2":"Ver proyectos","rt.title":"Tabla de inversiones","rt.amount":"Monto de inversión","rt.rate":"Rendimiento","rt.term":"Tiempo para la rentabilidad","rt.benefits":"Beneficios","rt.note":"Según la propuesta de inversión de Bapersa. Las condiciones se detallan en el contrato; confírmalas con un asesor antes de invertir.","ct.wa":"WhatsApp · Atención al cliente","ct.inv":"WhatsApp · Inversiones","ct.mail":"Correo","ct.addr":"Oficina","cf.eyebrow":"Firmas realizadas","cf.titleHtml":"Clientes que ya <em>aseguraron su inversión.</em>","cf.view":"Ver firma","nav.home":"Inicio","nav.projects":"Proyectos","nav.legal":"Seguridad jurídica","nav.locations":"Ubicaciones","nav.about":"Nosotros","nav.contact":"Contacto","nav.menu":"Abrir menú",
   "cta.explore":"Explorar oportunidades",
   "hero.note":"Ilustración · reemplazar por fotografía real","hero.pause":"Pausar presentación","hero.play":"Reanudar presentación","hero.prev":"Diapositiva anterior","hero.next":"Diapositiva siguiente",
   "s1.label":"Club Castamar","s1.tag":"Proyectos en Ecuador","s1.title":"Tu próxima gran oportunidad <em>comienza aquí.</em>","s1.desc":"Descubre proyectos inmobiliarios en Ecuador con una visión orientada al patrimonio, la ubicación y el desarrollo a largo plazo.","s1.c1":"Descubrir proyectos","s1.c2":"Conocer Bapersa",
@@ -1021,7 +1053,7 @@ const I18N = {
   "meta.title":"Inmobiliaria Bapersa · Proyectos inmobiliarios en Ecuador","k.photo":"Fotografía","k.render":"Render referencial","k.poster":"Material comercial","d.prices":"Precios referenciales","d.pricesNote":"Según material comercial de Bapersa. Confirma precio y disponibilidad con un asesor.","d.from":"Desde","d.features":"Características","d.featNote":"Según material comercial y renders del proyecto."
  },
  en:{
-  "nav.investors":"Investors","inv.eyebrow":"Investors","inv.title":"Invest in lots and land in Ecuador.","inv.desc":"Tell us what you are looking for and an investment advisor will message you on WhatsApp with the options that fit your profile.","inv.p1":"Active projects on the coast and in Valle de los Chillos","inv.p2":"Direct credit and flexible payment plans","inv.p3":"Online guidance if you invest from abroad","inv.phone":"WhatsApp or phone","inv.budget":"Approximate investment amount","inv.pay":"Payment method","inv.goal":"Goal","inv.note":"Sending opens WhatsApp with your request ready. Just press send.","inv.send":"Send via WhatsApp","inv.opened":"WhatsApp opened with your request. If it didn't, message us at +593 98 461 8576.","inv.vphone":"Enter a valid number (with country code if you are outside Ecuador).","b1":"Up to USD 20,000","b2":"USD 20,000 – 50,000","b3":"USD 50,000 – 100,000","b4":"Over USD 100,000","pay1":"Cash","pay2":"Direct credit","pay3":"To be decided","g1":"Build a home","g2":"Investment / appreciation","g3":"Vacation rental","g4":"Other","ba.eyebrow":"Progress","ba.title":"Before and now","ba.before":"Before","ba.after":"Now","ba.drag":"Slide to compare before and now","inv.titleHtml":"Invest in lots and land <em>in Ecuador.</em>","inv.s1":"active projects","inv.s2":"entry price","inv.s3":"months of maximum financing","inv.why":"Why invest with Bapersa","inv.formT":"Request your investment consultation","inv.formD":"Fill in the form and we will reply on WhatsApp.","ba.soon":"Before and now photos coming soon.","k.plan":"Project plan","vw.open":"View large","vw.label":"Image viewer","vw.hint":"Tap or click to zoom · drag to move around · Esc or ✕ to close","d.tour":"360° tour","d.web":"Website","hi.tag":"Investors","hi.title":"Invest in land <em>you can trust.</em>","hi.desc":"Lots and land on the coast and in the valleys of Ecuador, with direct credit and an investment advisor who guides you through the whole process.","hi.c1":"I want to invest","hi.c2":"View projects","hi.from":"USD 16,500","s0.label":"Investors","s0.tag":"Investors","s0.title":"Grow your capital <em>with Bapersa.</em>","s0.desc":"Returns of up to 30% in 12 months, with professional guidance and transparency throughout the process.","s0.c1":"I want to invest","s0.c2":"View projects","rt.title":"Investment table","rt.amount":"Investment amount","rt.rate":"Return","rt.term":"Time to return","rt.benefits":"Benefits","rt.note":"Per Bapersa’s investment proposal. Terms are set out in the contract; confirm them with an advisor before investing.","ct.wa":"WhatsApp · Customer service","ct.inv":"WhatsApp · Investments","ct.mail":"Email","ct.addr":"Office","nav.home":"Home","nav.projects":"Projects","nav.legal":"Legal assurance","nav.locations":"Locations","nav.about":"About","nav.contact":"Contact","nav.menu":"Open menu",
+  "nav.investors":"Investors","inv.eyebrow":"Investors","inv.title":"Real estate investment with a vision for the future.","inv.desc":"Tell us what you are looking for and an investment advisor will message you on WhatsApp with the options that fit your profile.","inv.p1":"Active projects on the coast and in Valle de los Chillos","inv.p2":"Direct credit and flexible payment plans","inv.p3":"Online guidance if you invest from abroad","inv.phone":"WhatsApp or phone","inv.budget":"Approximate investment amount","inv.pay":"Payment method","inv.goal":"Goal","inv.note":"Sending opens WhatsApp with your request ready. Just press send.","inv.send":"Send via WhatsApp","inv.opened":"WhatsApp opened with your request. If it didn't, message us at +593 98 461 8576.","inv.vphone":"Enter a valid number (with country code if you are outside Ecuador).","b1":"Up to USD 20,000","b2":"USD 20,000 – 50,000","b3":"USD 50,000 – 100,000","b4":"Over USD 100,000","pay1":"Cash","pay2":"Direct credit","pay3":"To be decided","g1":"Build a home","g2":"Investment / appreciation","g3":"Vacation rental","g4":"Other","ba.eyebrow":"Progress","ba.title":"Before and now","ba.before":"Before","ba.after":"Now","ba.drag":"Slide to compare before and now","inv.titleHtml":"Real estate investment <em>with a vision for the future.</em>","inv.s1":"active projects","inv.s2":"entry price","inv.s3":"months of maximum financing","inv.why":"Why invest with Bapersa","inv.formT":"Request your investment consultation","inv.formD":"Fill in the form and we will reply on WhatsApp.","ba.soon":"Before and now photos coming soon.","k.plan":"Project plan","vw.open":"View large","vw.label":"Image viewer","vw.hint":"Tap or click to zoom · drag to move around · Esc or ✕ to close","d.tour":"360° tour","d.web":"Website","hi.tag":"Investors","hi.title":"Invest in land <em>you can trust.</em>","hi.desc":"Lots and land on the coast and in the valleys of Ecuador, with direct credit and an investment advisor who guides you through the whole process.","hi.c1":"I want to invest","hi.c2":"View projects","hi.from":"USD 16,500","s0.label":"Investors","s0.tag":"Investors","s0.title":"Grow your capital <em>with Bapersa.</em>","s0.desc":"Returns of up to 30% in 12 months, with professional guidance and transparency throughout the process.","s0.c1":"I want to invest","s0.c2":"View projects","rt.title":"Investment table","rt.amount":"Investment amount","rt.rate":"Return","rt.term":"Time to return","rt.benefits":"Benefits","rt.note":"Per Bapersa’s investment proposal. Terms are set out in the contract; confirm them with an advisor before investing.","ct.wa":"WhatsApp · Customer service","ct.inv":"WhatsApp · Investments","ct.mail":"Email","ct.addr":"Office","cf.eyebrow":"Completed signings","cf.titleHtml":"Clients who have already <em>secured their investment.</em>","cf.view":"View signing","nav.home":"Home","nav.projects":"Projects","nav.legal":"Legal assurance","nav.locations":"Locations","nav.about":"About","nav.contact":"Contact","nav.menu":"Open menu",
   "cta.explore":"Explore opportunities",
   "hero.note":"Illustration · replace with real photography","hero.pause":"Pause slideshow","hero.play":"Resume slideshow","hero.prev":"Previous slide","hero.next":"Next slide",
   "s1.label":"Club Castamar","s1.tag":"Projects in Ecuador","s1.title":"Your next great opportunity <em>starts here.</em>","s1.desc":"Discover real estate projects in Ecuador built around long-term value, location and development.","s1.c1":"Discover projects","s1.c2":"About Bapersa",
@@ -1177,7 +1209,7 @@ const SLIDES=[
  {k:'s0', img:'img/portada-inversion.jpg', kind:'photo', c1:'#inversionistas', c2:'#proyectos', pos:'76% 30%'},
  {k:'s1', img:'img/castamar-acceso.jpg', kind:'render', proj:'club-castamar', c1:'#proyectos', c2:'#nosotros'},
  {k:'s2', img:'img/killary-aereo.jpg', kind:'photo', proj:'killary', c1:'#mapa', c2:'#inversionistas'},
- {k:'s3', img:'img/valle-lotes.jpg', kind:'photo', proj:'residencial-san-camilo', c1:'#nosotros', c2:'#contacto', prefill:'docs'}
+ {k:'s3', img:'img/valle-lotes.jpg', kind:'photo', proj:'residencial-san-camilo', c1:'#nosotros', c2:'#inversionistas'}
 ];
 const DURATION=7000;
 const hero={i:0, elapsed:0, last:0, paused:false, userPaused:false, raf:0};
@@ -1256,7 +1288,7 @@ function renderLegal(){ if(!$('#seguridad-juridica'))return;
 }
 function docCount(p){return (p.documents||[]).length;}
 let projActive=0;
-function renderProjects(){
+function renderProjects(){ if(!$('#proj-grid'))return;
   const g=$('#proj-grid');
   g.setAttribute('role','list');
   g.innerHTML=PROJECTS.map((p,n)=>`<article class="proj-card${n===projActive?' is-active':''}" role="listitem" tabindex="0" data-i="${n}" aria-label="${esc(p.name)}" aria-expanded="${n===projActive}">
@@ -1342,7 +1374,8 @@ function selectProject(id,zoom){
     const wide=$('#map-stage').clientWidth>620;animateVB({x:x-w/2-(wide?w*.2:0),y:y-h/2+(wide?0:h*.2),w,h});}
   const pop=$('#map-pop');
   pop.innerHTML=`<div class="thumb">${cover(p)}</div><button class="close" type="button" aria-label="${esc(t('map.close'))}">${ic('x','icon sm')}</button>
-   <div class="pad"><span class="chip sample" style="justify-self:start">${esc(t('map.sector'))}</span><h3>${esc(p.name)}</h3><p>${esc(L(p.location))}</p><p>${esc(L(p.concept))}</p>
+   <div class="pad"><span class="pop-cat">${esc(t('cat.'+p.category))}</span><h3>${esc(p.name)}</h3><p class="pop-loc">${ic('pin','icon sm')}${esc(L(p.location))}</p><p>${esc(L(p.desc))}</p>
+   ${p.features?`<ul class="pop-feat">${p.features.map(f=>`<li>${esc(L(f))}</li>`).join('')}</ul><small class="pop-note">${esc(t('d.featNote'))}</small>`:''}
    <a class="btn btn-primary" style="min-height:42px;font-size:.82rem" href="#${p.id}" data-open="${p.id}">${esc(t('map.open'))}${ic('arrow')}</a></div>`;
   pop.classList.add('show'); pop.querySelector('.close').onclick=closePop;
 }
@@ -1402,29 +1435,78 @@ function returnsBlock(p){
     <div class="ret-row ret-th" role="row"><span role="columnheader">${esc(t('rt.amount'))}</span><span role="columnheader">${esc(t('rt.rate'))}</span><span role="columnheader">${esc(t('rt.term'))}</span></div>
     ${RETURNS.map(x=>`<div class="ret-row" role="row"><span role="cell">${esc(L(x.amount))}</span><span role="cell" class="ret-rate">${esc(x.rate)}</span><span role="cell">${esc(L(x.term))}</span></div>`).join('')}
    </div>
-   <h4>${esc(t('rt.benefits'))}</h4>
-   <ul class="ret-ben">${RETURN_BENEFITS.map(b=>`<li>${ic(b.i,'icon sm')}<span>${esc(L(b.t))}</span></li>`).join('')}</ul>
    <p class="ba-cap">${esc(t('rt.note'))}</p></div>`;
+}
+// Firmas de cada proyecto (slider coverflow de la sección Proyectos). Una foto por firma.
+const FIRMAS = [
+  { img:"img/firma-castamar-reserva.jpg", proj:"club-castamar", t1:{es:"Reserva",en:"Reservation"}, t2:{es:"Lote N° 6 · Mz 22",en:"Lot No. 6 · Block 22"}, desc:{es:"Un lugar que no todos tienen, frente al mar.",en:"A place not everyone has, right by the sea."} },
+  { img:"img/firma-castamar-notaria.jpg", proj:"club-castamar", t1:{es:"Firma en notaría",en:"Notary signing"}, t2:{es:"Lote N° 6 · Mz 22",en:"Lot No. 6 · Block 22"}, desc:{es:"El patrimonio que hoy lleva tu nombre.",en:"The asset that now bears your name."} },
+  { img:"img/firma-sancamilo-51a.jpg", proj:"residencial-san-camilo", t1:{es:"Firma en notaría",en:"Notary signing"}, t2:{es:"Lote N° 51 A",en:"Lot No. 51 A"}, desc:{es:"Firmamos tu futuro con acompañamiento legal en cada paso.",en:"We sign your future with legal guidance at every step."} },
+  { img:"img/firma-sancamilo-70b.jpg", proj:"residencial-san-camilo", t1:{es:"Firma en notaría",en:"Notary signing"}, t2:{es:"Lote N° 70 B",en:"Lot No. 70 B"}, desc:{es:"Firmamos tu futuro con acompañamiento legal en cada paso.",en:"We sign your future with legal guidance at every step."} },
+  { img:"img/firma-killary-7.jpg", proj:"killary", t1:{es:"Firma en notaría",en:"Notary signing"}, t2:{es:"Lote N° 7",en:"Lot No. 7"}, desc:{es:"Firmamos tu futuro con acompañamiento legal en cada paso.",en:"We sign your future with legal guidance at every step."} },
+  { img:"img/firma-killary-9.jpg", proj:"killary", t1:{es:"Firma en notaría",en:"Notary signing"}, t2:{es:"Lote N° 9",en:"Lot No. 9"}, desc:{es:"Firmamos tu futuro con acompañamiento legal en cada paso.",en:"We sign your future with legal guidance at every step."} }
+];
+const cf={i:0,hover:false,timer:0};
+function renderFirmas(){
+  const st=$('#cf-stage'); if(!st)return;
+  st.innerHTML=FIRMAS.map((f,i)=>{const p=projById(f.proj);return `<article class="cf-card" data-i="${i}" aria-roledescription="diapositiva" aria-label="${i+1} / ${FIRMAS.length}">
+     <img src="${f.img}" alt="${esc(L(f.t1)+' · '+(p?p.name:'')+' · '+L(f.t2))}" loading="${i<3?'eager':'lazy'}" decoding="async">
+     <div class="cf-shade"></div>
+     <div class="cf-body">
+       <span class="cf-tag">#${esc(p?p.name.replace(/^(Residencial|Club)\s+/,'').replace(/\s+/g,''):'Bapersa')}</span>
+       <div class="cf-txt"><h3>${esc(L(f.t1))}</h3><span class="cf-t2">${esc(L(f.t2))}</span><i class="cf-bar"></i>
+         <p>${esc(L(f.desc))}</p>
+         <button type="button" class="cf-cta" data-view="${i}">${esc(t('cf.view'))}<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></button></div>
+     </div></article>`;}).join('');
+  $('#cf-dots').innerHTML=FIRMAS.map((f,i)=>`<button type="button" role="tab" aria-label="${i+1}"></button>`).join('');
+  $$('#cf-dots button').forEach((b,i)=>b.onclick=()=>cfGo(i));
+  $$('.cf-card',st).forEach(c=>c.addEventListener('click',e=>{const i=+c.dataset.i;if(i!==cf.i){e.preventDefault();cfGo(i);}}));
+  $$('.cf-cta',st).forEach(b=>b.onclick=e=>{e.stopPropagation();const f=FIRMAS[+b.dataset.view];const p=projById(f.proj);openViewer(null,{src:f.img},L(f.t1)+' · '+(p?p.name:'')+' · '+L(f.t2));});
+  cfLayout();
+}
+function cfLayout(){
+  const n=FIRMAS.length, cards=$$('#cf-stage .cf-card'); if(!cards.length)return;
+  const w=cards[0].offsetWidth||330, narrow=innerWidth<700;
+  cards.forEach((c,i)=>{const o=(i-cf.i+n)%n; let tr='translateX(0) scale(.4)',op=0,z=0,fl='brightness(.4) blur(2px)';
+    if(o===0){tr='translateX(0) scale(1) rotateY(0)';op=1;z=30;fl='none';}
+    else if(o===1){tr=`translateX(${w*(narrow?.62:.86)}px) scale(.84) rotateY(-24deg)`;op=narrow?.5:.65;z=20;fl='brightness(.75)';}
+    else if(o===n-1){tr=`translateX(${-w*(narrow?.62:.86)}px) scale(.84) rotateY(24deg)`;op=narrow?.5:.65;z=20;fl='brightness(.75)';}
+    else if(o===2&&!narrow){tr=`translateX(${w*1.55}px) scale(.68) rotateY(-38deg)`;op=.38;z=10;fl='brightness(.55) blur(1px)';}
+    else if(o===n-2&&!narrow){tr=`translateX(${-w*1.55}px) scale(.68) rotateY(38deg)`;op=.38;z=10;fl='brightness(.55) blur(1px)';}
+    c.style.transform=tr;c.style.opacity=op;c.style.zIndex=z;c.style.filter=fl;c.classList.toggle('is-center',o===0);c.setAttribute('aria-hidden',o!==0);
+    c.querySelector('.cf-cta').tabIndex=o===0?0:-1;});
+  $$('#cf-dots button').forEach((d,i)=>d.setAttribute('aria-selected',i===cf.i));
+  const amb=$('#cf-amb'); if(amb&&amb.getAttribute('src')!==FIRMAS[cf.i].img){amb.style.opacity=0;setTimeout(()=>{amb.src=FIRMAS[cf.i].img;amb.style.opacity=1;},250);}
+}
+function cfGo(i){cf.i=(i+FIRMAS.length)%FIRMAS.length;cfLayout();cfAuto();}
+function cfAuto(){clearInterval(cf.timer);if(reduceMotion)return;cf.timer=setInterval(()=>{if(!cf.hover&&!document.hidden&&!$('#viewer').open)cfGo(cf.i+1);},5000);}
+function initFirmas(){
+  const sec=$('#proyectos'); if(!sec||!$('#cf-stage'))return;
+  renderFirmas();
+  $('#cf-prev').onclick=()=>cfGo(cf.i-1); $('#cf-next').onclick=()=>cfGo(cf.i+1);
+  sec.addEventListener('mouseenter',()=>cf.hover=true); sec.addEventListener('mouseleave',()=>cf.hover=false);
+  sec.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')cfGo(cf.i-1);if(e.key==='ArrowRight')cfGo(cf.i+1);});
+  let sx=null; sec.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
+  sec.addEventListener('touchend',e=>{if(sx===null)return;const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>45)cfGo(cf.i+(d<0?1:-1));sx=null;},{passive:true});
+  addEventListener('resize',()=>cfLayout());
+  cfAuto();
 }
 // Planos de los proyectos (se ven con lupa dentro de la ficha).
 const PLANS = { "club-castamar":"img/plano-castamar.jpg", "killary":"img/plano-killary.jpg", "residencial-san-camilo":"img/plano-sancamilo.jpg" };
-function openViewer(dlg,g,alt){
-  let v=dlg.querySelector('.viewer'); if(v)v.remove();
-  v=document.createElement('div'); v.className='viewer'; v.setAttribute('role','dialog'); v.setAttribute('aria-label',t('vw.label'));
-  v.innerHTML=`<div class="vw-stage"><img src="${g.src}" alt="${esc(alt)}" draggable="false"></div>
+function openViewer(_,g,alt){
+  const v=$('#viewer');
+  v.innerHTML=`<div class="vw-stage"><img src="${g.src}" alt="${esc(alt||'')}" draggable="false"></div>
     <div class="vw-bar"><span>${esc(t('vw.hint'))}</span></div>
     <button type="button" class="vw-close" aria-label="${esc(t('d.close'))}">${ic('x')}</button>`;
-  dlg.appendChild(v);
   const st=v.querySelector('.vw-stage'),img=st.querySelector('img');let z=false,drag=null,moved=false;const Z=2.6;
-  const at=(e)=>{const r=st.getBoundingClientRect();return [(e.clientX-r.left)/r.width*100,(e.clientY-r.top)/r.height*100];};
-  const setO=(e)=>{const [x,y]=at(e);img.style.transformOrigin=`${x}% ${y}%`;};
+  const at=e=>{const r=img.getBoundingClientRect();return [Math.max(0,Math.min(100,(e.clientX-r.left)/r.width*100)),Math.max(0,Math.min(100,(e.clientY-r.top)/r.height*100))];};
+  const setO=e=>{const [x,y]=at(e);img.style.transformOrigin=`${x}% ${y}%`;};
   st.addEventListener('pointerdown',e=>{moved=false;drag={x:e.clientX,y:e.clientY};if(z){try{st.setPointerCapture(e.pointerId)}catch(_){}}});
-  st.addEventListener('pointermove',e=>{if(!z)return; if(e.pointerType==='mouse'||drag){if(drag&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>6)moved=true;setO(e);}});
+  st.addEventListener('pointermove',e=>{if(!z)return;if(e.pointerType==='mouse'||drag){if(drag&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>6)moved=true;setO(e);}});
   st.addEventListener('pointerup',e=>{const wasDrag=moved;drag=null;if(wasDrag)return;z=!z;if(z)setO(e);img.style.transform=z?`scale(${Z})`:'';st.classList.toggle('zoomed',z);});
-  const close=()=>{v.remove();};
-  v.querySelector('.vw-close').onclick=close;
-  v.addEventListener('click',e=>{if(e.target===v)close();});
-  requestAnimationFrame(()=>v.classList.add('in'));
+  v.querySelector('.vw-close').onclick=()=>v.close();
+  v.onclick=e=>{if(e.target===v)v.close();};
+  if(!v.open)v.showModal();
 }
 function bindBA(root){ $$('.ba',root).forEach(b=>{const rg=b.querySelector('.ba-range');rg.oninput=()=>b.style.setProperty('--pos',rg.value+'%');}); }
 function invOpts(){
@@ -1507,7 +1589,7 @@ function renderFooter(){
     CONFIG.email&&{i:'mail',k:'ct.mail',v:CONFIG.email,h:'mailto:'+CONFIG.email},
     CONFIG.address&&{i:'pin',k:'ct.addr',v:CONFIG.address,h:'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(CONFIG.address),ext:1}
   ].filter(Boolean);
-  $('#wa-box').innerHTML=items.map(x=>`<a class="wa ct-item" href="${x.h}"${x.ext?' target="_blank" rel="noopener"':''}><span class="ic${x.c?'':' alt'}">${ic(x.i)}</span><div><small>${esc(t(x.k))}</small><strong>${esc(x.v)}</strong></div></a>`).join('');
+  if($('#wa-box'))$('#wa-box').innerHTML=items.map(x=>`<a class="wa ct-item" href="${x.h}"${x.ext?' target="_blank" rel="noopener"':''}><span class="ic${x.c?'':' alt'}">${ic(x.i)}</span><div><small>${esc(t(x.k))}</small><strong>${esc(x.v)}</strong></div></a>`).join('');
 }
 
 /* ---------- Formulario ---------- */
@@ -1516,6 +1598,8 @@ const COUNTRIES={es:["Ecuador","Estados Unidos","Canadá","España","Colombia","
 const TYPES=['info','docs','visit','meeting','invest','other'];
 const formOpened=Date.now();
 function renderFormOptions(){
+  if($('#countries'))$('#countries').innerHTML=COUNTRIES[LANG].map(c=>`<option value="${esc(c)}"></option>`).join('');
+  if(!$('#lead-form'))return;
   const keep=id=>$(id).value;
   const pv=keep('#f-prefix')||'+593', pj=keep('#f-project'), ty=keep('#f-type');
   $('#f-prefix').innerHTML=PREFIX.map(([c,n])=>`<option value="${c}">${n} ${c}</option>`).join(''); $('#f-prefix').value=pv;
@@ -1544,7 +1628,7 @@ function payload(){
 function summary(p){const pj=PROJECTS.find(x=>x.id===p.project);return `${LANG==='es'?'Solicitud de información':'Information request'} — Bapersa\n${t('f.name')}: ${p.name}\n${t('f.email')}: ${p.email}\n${t('f.country')}: ${p.country}\n${t('f.phone')}: ${p.phone}\n${t('f.project')}: ${pj?pj.name:t('f.general')}\n${t('f.type')}: ${t('ty.'+p.type)}\n${t('f.msg')}: ${p.message||'—'}`;}
 function status(kind,html,extra=''){const s=$('#form-status');s.className='form-status '+kind;s.innerHTML=`<div>${html}</div>${extra}`;s.hidden=false;}
 function initForm(){
-  renderFormOptions();
+  renderFormOptions(); if(!$('#lead-form'))return;
   const f=$('#lead-form');
   f.addEventListener('input',e=>{const fld=e.target.closest('.field');if(fld&&fld.classList.contains('invalid'))validate();});
   f.addEventListener('submit',async e=>{
@@ -1588,9 +1672,9 @@ function openDetail(id,push=true){
    <p class="detail-cap" id="d-cap">${esc(t('k.'+G[0].kind))} · 1 / ${G.length}</p>
    ${G.length>1?`<div class="detail-thumbs" role="group" aria-label="${esc(t('d.gallery'))}">${G.map((g,v)=>`<button type="button" aria-pressed="${v===0}" data-v="${v}" aria-label="${esc(t('d.gallery'))} ${v+1}">${g.src?media(g.src,'',{fit:g.fit}):''}</button>`).join('')}</div>`:''}
    <div class="detail-body">
-    <div><span class="eyebrow">${esc(t('cat.'+p.category))}</span><h2 id="d-title">${esc(p.name)}</h2><p class="lead">${esc(L(p.desc))}</p>${p.features?`<ul class="feat">${p.features.map(f=>`<li class="chip ok">${esc(L(f))}</li>`).join('')}</ul><p style="font-size:.76rem;color:var(--muted);margin-top:.5rem">${esc(t('d.featNote'))}</p>`:''}
-     ${returnsBlock(p)}
+    <div class="detail-main"><h2 id="d-title" class="sr-only">${esc(p.name)}</h2>
      ${baBlock(p)}
+     ${returnsBlock(p)}
      <p style="font-size:.78rem;color:var(--muted);margin-top:1rem">${esc(t('d.illus'))}</p></div>
     <div class="detail-side"><dl class="facts">
       <div><dt>${esc(t('d.location'))}</dt><dd>${esc(L(p.location))}</dd></div>
@@ -1600,7 +1684,7 @@ function openDetail(id,push=true){
       ${p.finance?`<div><dt>${esc(t('d.finance'))}</dt><dd>${esc(L(p.finance))}</dd></div>`:''}
       <div><dt>${esc(t('d.status'))}</dt><dd>${p.status?esc(L(p.status)):''}</dd></div>
       ${p.prices?`<div style="align-items:start"><dt>${esc(t('d.prices'))}</dt><dd><div class="price-table">${p.prices.map(x=>`<div><span>${esc(L(x.l))}</span><b>${money(x.v)}</b></div>`).join('')}</div><p style="font-size:.74rem;color:var(--muted);margin-top:.4rem">${esc(t('d.pricesNote'))}</p></dd></div>`:`<div><dt>${esc(t('d.price'))}</dt><dd>${esc(t('d.priceV'))}</dd></div>`}</dl>
-     <a class="btn btn-primary" href="#contacto" data-prefill-project="${p.id}">${esc(t('d.cta'))}${ic('arrow')}</a>
+     <a class="btn btn-primary" href="#inversionistas" data-prefill-project="${p.id}">${esc(t('d.cta'))}${ic('arrow')}</a>
      ${p.links?`<div class="d-links">${p.links.tour?`<a class="btn btn-line" href="${p.links.tour}" target="_blank" rel="noopener">${ic('tour','icon sm')}${esc(t('d.tour'))}</a>`:''}${p.links.web?`<a class="btn btn-line" href="${p.links.web}" target="_blank" rel="noopener">${ic('globe','icon sm')}${esc(t('d.web'))}</a>`:''}</div>`:''}
      <a class="btn btn-line" href="#mapa" data-map="${p.id}">${ic('pin','icon sm')}${esc(t('d.map'))}</a></div>
    </div>`;
@@ -1636,7 +1720,7 @@ function applyStatic(){
 function renderAll(){
   applyStatic(); renderHeroDots(); renderHeroCopy(false); renderPauseBtn(); renderTrust(); renderLegal(); renderProjects(); renderMapSide(); renderMarkers();
   if(mapState.sel)selectProject(mapState.sel,false);
-  renderStory(); renderAbout(); renderTesti(); renderFAQ(); renderFooter(); renderFormOptions();
+  renderStory(); renderAbout(); renderTesti(); renderFAQ(); renderFooter(); renderFormOptions(); renderFirmas();
   if($('#detail').open){const id=location.hash.slice(1);openDetail(id,false);}
   setupReveal();
 }
@@ -1652,8 +1736,8 @@ document.addEventListener('click',e=>{
   const lang=e.target.closest('[data-lang]'); if(lang){setLang(lang.dataset.lang);return;}
   const op=e.target.closest('[data-open]'); if(op){e.preventDefault();openDetail(op.dataset.open);return;}
   const info=e.target.closest('[data-info]'); if(info){e.preventDefault();openInfo(info.dataset.info);return;}
-  const pp=e.target.closest('[data-prefill-project]'); if(pp){$('#detail').close();$('#f-project').value=pp.dataset.prefillProject;if(!$('#f-type').value)$('#f-type').value='info';}
-  const pt=e.target.closest('[data-prefill-type]'); if(pt){$('#f-type').value=pt.dataset.prefillType;}
+  const pp=e.target.closest('[data-prefill-project]'); if(pp){$('#detail').close();const sel=$('#i-project');if(sel){sel.value=pp.dataset.prefillProject;if(!sel.value)sel.value='general';}}
+  const pt=e.target.closest('[data-prefill-type]'); if(pt&&$('#f-type')){$('#f-type').value=pt.dataset.prefillType;}
   const mp=e.target.closest('[data-map]'); if(mp){$('#detail').close();setTimeout(()=>selectProject(mp.dataset.map,true),500);}
   const a=e.target.closest('a[href^="#"]'); if(a&&menuOpen())toggleMenu(false);
 });
@@ -1665,7 +1749,7 @@ addEventListener('keydown',e=>{if(e.key==='Escape'&&menuOpen())toggleMenu(false)
 function onScroll(){
   const y=scrollY; $('#header').classList.toggle('scrolled',y>40); $('#to-top').classList.toggle('show',y>innerHeight*.9);
   // enlace activo
-  let cur='inicio'; for(const id of ['inicio','proyectos','inversionistas','nosotros','contacto']){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<innerHeight*.4)cur=id;}
+  let cur='inicio'; for(const id of ['inicio','proyectos','inversionistas','nosotros']){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<innerHeight*.4)cur=id;}
   $$('#nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
 }
 addEventListener('scroll',onScroll,{passive:true});
@@ -1684,8 +1768,8 @@ setTimeout(()=>{const a=$('#wa-float');a.classList.add('show');
   setTimeout(()=>a.classList.add('tip'),900);setTimeout(()=>a.classList.remove('tip'),6500);},1500);
 
 /* INIT */
-$('#cta-bg').innerHTML=media('img/castamar-casa.jpg');
-applyStatic(); initHero(); renderTrust(); renderLegal(); renderProjects(); initMap(); renderStory(); initInvest(); renderAbout(); renderTesti(); renderFAQ(); renderFooter(); initForm(); onScroll(); setupReveal();
+if($('#cta-bg'))$('#cta-bg').innerHTML=media('img/castamar-casa.jpg');
+applyStatic(); initHero(); renderTrust(); renderLegal(); renderProjects(); initMap(); renderStory(); initInvest(); renderAbout(); renderTesti(); renderFAQ(); renderFooter(); initForm(); initFirmas(); onScroll(); setupReveal();
 (function(){const id=location.hash.slice(1);if(PROJECTS.some(p=>p.id===id))openDetail(id,false);})();
 </script>
 
