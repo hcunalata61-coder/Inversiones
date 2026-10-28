@@ -289,7 +289,9 @@ img.scene.contain{object-fit:contain;background:#0b1715}
 .map-list strong{display:block;font-size:.92rem;font-weight:600}
 .map-list small{color:var(--muted);font-size:.78rem}
 .map-stage{position:relative;border-radius:var(--r-lg);overflow:hidden;background:linear-gradient(160deg,#dfeeee,#cfe3e4);min-height:620px;border:1px solid var(--line);touch-action:none}
-#map-svg{position:absolute;inset:0;width:100%;height:100%;cursor:grab;user-select:none}
+#map-svg{position:absolute;inset:0;width:100%;height:100%;cursor:default;user-select:none}
+.map-stage:not(.zoomed){touch-action:pan-y}
+.map-stage.zoomed #map-svg{cursor:grab}
 #map-svg.dragging{cursor:grabbing}
 .map-zoom{position:absolute;right:16px;top:16px;display:grid;gap:6px}
 .map-zoom button{width:42px;height:42px;border-radius:12px;border:1px solid rgba(11,23,21,.12);background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);cursor:pointer;display:grid;place-items:center;color:var(--fg)}
@@ -770,8 +772,8 @@ dialog[open]{animation:dlg .55s var(--ease)}
     <nav class="nav" aria-label="Principal" id="nav">
       <a href="#inicio" data-i18n="nav.home">Inicio</a>
       <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
-      <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
       <a href="#inversionistas" data-i18n="nav.investors">Inversionistas</a>
+      <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
     </nav>
     <div class="header-tools">
       <div class="lang" role="group" aria-label="Idioma / Language">
@@ -787,8 +789,8 @@ dialog[open]{animation:dlg .55s var(--ease)}
   <nav aria-label="Móvil">
     <a href="#inicio" data-i18n="nav.home">Inicio</a>
     <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
-    <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
     <a href="#inversionistas" data-i18n="nav.investors">Inversionistas</a>
+    <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
   </nav>
   <a class="btn btn-primary" href="#proyectos" data-i18n="cta.explore">Explorar oportunidades</a>
 </div>
@@ -835,20 +837,6 @@ dialog[open]{animation:dlg .55s var(--ease)}
   </div>
 </section>
 
-<!-- PROYECTOS: FIRMAS (coverflow 3D) -->
-<section class="cf" id="proyectos" aria-labelledby="cf-title" aria-roledescription="carrusel" tabindex="-1">
-  <div class="cf-amb" aria-hidden="true"><img id="cf-amb" alt=""></div>
-  <div class="wrap cf-wrap">
-    <div class="cf-head rv">
-      <span class="cf-eyebrow"><i></i><span data-i18n="cf.eyebrow">Firmas realizadas</span><i></i></span>
-      <h2 id="cf-title" data-i18n-html="cf.titleHtml">Clientes que ya <em>aseguraron su inversión.</em></h2>
-    </div>
-    <div class="cf-stage" id="cf-stage"></div>
-    <button class="cf-nav prev" type="button" id="cf-prev" data-i18n-aria="hero.prev" aria-label="Anterior"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button>
-    <button class="cf-nav next" type="button" id="cf-next" data-i18n-aria="hero.next" aria-label="Siguiente"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
-    <div class="cf-dots" id="cf-dots" role="tablist"></div>
-  </div>
-</section>
 
 <!-- MAP -->
 <section class="section" id="mapa" aria-labelledby="map-title" style="background:var(--stone)">
@@ -939,6 +927,21 @@ dialog[open]{animation:dlg .55s var(--ease)}
   </div>
 </section>
 
+<!-- PROYECTOS: FIRMAS (coverflow 3D) -->
+<section class="cf" id="proyectos" aria-labelledby="cf-title" aria-roledescription="carrusel" tabindex="-1">
+  <div class="cf-amb" aria-hidden="true"><img id="cf-amb" alt=""></div>
+  <div class="wrap cf-wrap">
+    <div class="cf-head rv">
+      <span class="cf-eyebrow"><i></i><span data-i18n="cf.eyebrow">Firmas realizadas</span><i></i></span>
+      <h2 id="cf-title" data-i18n-html="cf.titleHtml">Clientes que ya <em>aseguraron su inversión.</em></h2>
+    </div>
+    <div class="cf-stage" id="cf-stage"></div>
+    <button class="cf-nav prev" type="button" id="cf-prev" data-i18n-aria="hero.prev" aria-label="Anterior"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button>
+    <button class="cf-nav next" type="button" id="cf-next" data-i18n-aria="hero.next" aria-label="Siguiente"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    <div class="cf-dots" id="cf-dots" role="tablist"></div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 
 <!-- TESTIMONIALS -->
@@ -958,8 +961,8 @@ dialog[open]{animation:dlg .55s var(--ease)}
       <div><h4 data-i18n="foot.nav">Navegación</h4><ul>
         <li><a href="#inicio" data-i18n="nav.home">Inicio</a></li>
         <li><a href="#nosotros" data-i18n="foot.about">Sobre nosotros</a></li>
-        <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
-        <li><a href="#inversionistas" data-i18n="nav.investors">Inversionistas</a></li></ul></div>
+        <li><a href="#inversionistas" data-i18n="nav.investors">Inversionistas</a></li>
+        <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li></ul></div>
       <div><h4 data-i18n="foot.projects">Proyectos</h4><ul id="foot-projects"></ul></div>
       <div><h4 data-i18n="foot.contact">Contacto</h4><div style="display:grid;gap:.9rem" id="foot-contact"></div></div>
     </div>
@@ -1437,7 +1440,11 @@ function scaleMarkers(){
   $$('#map-svg .marker').forEach(g=>g.setAttribute('transform',`translate(${g.dataset.x} ${g.dataset.y}) scale(${s})`));
 }
 function applyVB(animate){
-  const v=mapState.vb; $('#map-svg').setAttribute('viewBox',`${v.x} ${v.y} ${v.w} ${v.h}`); scaleMarkers();
+  // Mapa fijo: sin zoom no se puede arrastrar; con zoom solo se mueve dentro de los límites del mapa.
+  const b=fitStage(); let v=mapState.vb;
+  if(v.w>=b.w-0.5){v={...b};}
+  else{v.x=Math.min(Math.max(v.x,b.x),b.x+b.w-v.w);v.y=Math.min(Math.max(v.y,b.y),b.y+b.h-v.h);}
+  mapState.vb=v; const st=$('#map-stage'); if(st)st.classList.toggle('zoomed',v.w<b.w-0.5); $('#map-svg').setAttribute('viewBox',`${v.x} ${v.y} ${v.w} ${v.h}`); scaleMarkers();
 }
 function animateVB(to,ms=900){
   if(reduceMotion){mapState.vb=to;applyVB();return;}
@@ -1445,7 +1452,7 @@ function animateVB(to,ms=900){
   (function f(now){const k=Math.min(1,(now-st)/ms),e=ease(k);mapState.vb={x:from.x+(to.x-from.x)*e,y:from.y+(to.y-from.y)*e,w:from.w+(to.w-from.w)*e,h:from.h+(to.h-from.h)*e};applyVB();if(k<1)requestAnimationFrame(f);})(st);
 }
 function zoomAt(f,cx,cy){
-  const v=mapState.vb; let w=Math.min(MAP.W*1.2,Math.max(40,v.w*f)); const r=w/v.w; const h=v.h*r;
+  const v=mapState.vb; let w=Math.min(fitStage().w,Math.max(40,v.w*f)); const r=w/v.w; const h=v.h*r;
   cx??=v.x+v.w/2; cy??=v.y+v.h/2;
   mapState.vb={x:cx-(cx-v.x)*r,y:cy-(cy-v.y)*r,w,h}; applyVB();
 }
@@ -1466,7 +1473,7 @@ function selectProject(id,zoom){
   const pop=$('#map-pop');
   pop.innerHTML=`<div class="thumb">${cover(p)}</div><button class="close" type="button" aria-label="${esc(t('map.close'))}">${ic('x','icon sm')}</button>
    <div class="pad"><span class="pop-cat">${esc(t('cat.'+p.category))}</span><h3>${esc(p.name)}</h3><p class="pop-loc">${ic('pin','icon sm')}${esc(L(p.location))}</p><p>${esc(L(p.desc))}</p>
-   ${p.features?`<ul class="pop-feat">${p.features.map(f=>`<li>${esc(L(f))}</li>`).join('')}</ul><small class="pop-note">${esc(t('d.featNote'))}</small>`:''}
+
    <a class="btn btn-primary" style="min-height:42px;font-size:.82rem" href="#${p.id}" data-open="${p.id}">${esc(t('map.open'))}${ic('arrow')}</a></div>`;
   pop.classList.add('show'); pop.querySelector('.close').onclick=closePop;
 }
@@ -1478,9 +1485,9 @@ function initMap(){
   $('#z-in').onclick=()=>zoomAt(.7); $('#z-out').onclick=()=>zoomAt(1/.7); $('#z-reset').onclick=()=>{animateVB(fitStage());closePop();};
   stage.addEventListener('wheel',e=>{e.preventDefault();const [x,y]=toSvg(e.clientX,e.clientY);zoomAt(e.deltaY>0?1.12:1/1.12,x,y);},{passive:false});
   const pts=new Map(); let pinch=0;
-  svg.addEventListener('pointerdown',e=>{if(e.target.closest('.marker'))return;svg.setPointerCapture(e.pointerId);pts.set(e.pointerId,{x:e.clientX,y:e.clientY});svg.classList.add('dragging');});
+  svg.addEventListener('pointerdown',e=>{if(e.target.closest('.marker'))return;if(e.pointerType!=='mouse'&&!stage.classList.contains('zoomed')&&!pts.size)return;svg.setPointerCapture(e.pointerId);pts.set(e.pointerId,{x:e.clientX,y:e.clientY});svg.classList.add('dragging');});
   svg.addEventListener('pointermove',e=>{if(!pts.has(e.pointerId))return;const prev=pts.get(e.pointerId);const cur={x:e.clientX,y:e.clientY};
-    if(pts.size===1){const [,,s]=toSvg(0,0);mapState.vb.x-=(cur.x-prev.x)*s;mapState.vb.y-=(cur.y-prev.y)*s;applyVB();}
+    if(pts.size===1&&stage.classList.contains('zoomed')){const [,,s]=toSvg(0,0);mapState.vb.x-=(cur.x-prev.x)*s;mapState.vb.y-=(cur.y-prev.y)*s;applyVB();}
     pts.set(e.pointerId,cur);
     if(pts.size===2){const [a,b]=[...pts.values()];const d=Math.hypot(a.x-b.x,a.y-b.y);if(pinch){const [x,y]=toSvg((a.x+b.x)/2,(a.y+b.y)/2);zoomAt(pinch/d,x,y);}pinch=d;}});
   const up=e=>{pts.delete(e.pointerId);if(pts.size<2)pinch=0;if(!pts.size)svg.classList.remove('dragging');};
@@ -1874,7 +1881,7 @@ addEventListener('keydown',e=>{if(e.key==='Escape'&&menuOpen())toggleMenu(false)
 function onScroll(){
   const y=scrollY; $('#header').classList.toggle('scrolled',y>40); $('#to-top').classList.toggle('show',y>innerHeight*.9);
   // enlace activo
-  let cur='inicio'; for(const id of ['inicio','nosotros','proyectos','inversionistas']){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<innerHeight*.4)cur=id;}
+  let cur='inicio'; for(const id of ['inicio','nosotros','inversionistas','proyectos']){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<innerHeight*.4)cur=id;}
   $$('#nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
 }
 addEventListener('scroll',onScroll,{passive:true});
