@@ -505,9 +505,9 @@ dialog#viewer::backdrop{background:rgba(6,12,11,.9)}
 
 /* ============ ABOUT ============ */
 .about2{position:relative;overflow:hidden;background:#fff;isolation:isolate}
-.about2::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 55% 45% at 50% 30%,rgba(14,171,139,.12),transparent 70%),linear-gradient(rgba(14,171,139,.05) 1px,transparent 1px) 0 0/56px 56px,linear-gradient(90deg,rgba(14,171,139,.05) 1px,transparent 1px) 0 0/56px 56px;-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 35%,#000 40%,transparent 100%);mask-image:radial-gradient(ellipse 70% 70% at 50% 35%,#000 40%,transparent 100%)}
+.about2::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(14,171,139,.05) 1px,transparent 1px) 0 0/56px 56px,linear-gradient(90deg,rgba(14,171,139,.05) 1px,transparent 1px) 0 0/56px 56px;-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 35%,#000 40%,transparent 100%);mask-image:radial-gradient(ellipse 70% 70% at 50% 35%,#000 40%,transparent 100%)}
 .about2-hero{display:grid;justify-items:center;text-align:center;gap:clamp(1.2rem,2.6vw,2rem);margin-bottom:clamp(40px,6vw,80px)}
-.about2-logo{width:min(720px,88vw);filter:drop-shadow(0 18px 40px rgba(14,171,139,.18))}
+.about2-logo{width:min(720px,88vw)}
 .about-logo{display:block;width:100%;height:auto;overflow:visible}
 .about-logo .al-mark{transform-origin:14% 50%;animation:alMark 1.4s var(--ease) both}
 .about-logo .al-word,.about-logo .al-sub{animation:alWord 1.2s var(--ease) .25s both}
@@ -1019,9 +1019,9 @@ const LEGAL = [
 ];
 
 const ABOUT_SLOTS = [
-  {t:{es:"Historia",en:"History"}, v:{es:"Inmobiliaria Bapersa nació en Quito hace dos años para ofrecer lotes y terrenos en ubicaciones estratégicas del Ecuador, con procesos claros y atención cercana.",en:"Inmobiliaria Bapersa was founded in Quito two years ago to offer lots and land in strategic locations across Ecuador, with clear processes and close guidance."}},
-  {t:{es:"Misión",en:"Mission"}, v:{es:"Ofrecer lotes y terrenos en ubicaciones estratégicas de Ecuador, con información clara y acompañamiento cercano, para que cada cliente construya su patrimonio con confianza.",en:"To offer lots and land in strategic locations across Ecuador, with clear information and close guidance, so every client can build their wealth with confidence."}},
-  {t:{es:"Visión",en:"Vision"}, v:{es:"Ser la inmobiliaria de referencia en la venta de lotes y terrenos en Ecuador, reconocida por la transparencia de sus procesos y la confianza de clientes nacionales e internacionales.",en:"To be Ecuador's reference company for lots and land, recognized for transparent processes and the trust of local and international clients."}},
+  {t:{es:"Historia",en:"History"}, v:{es:"Inmobiliaria Bapersa nació en Quito hace dos años con un objetivo claro: desarrollar proyectos inmobiliarios en ubicaciones de alto potencial en Ecuador, con procesos transparentes y respaldo legal en cada operación.",en:"Inmobiliaria Bapersa was founded in Quito two years ago with a clear goal: to develop real estate projects in high-potential locations in Ecuador, with transparent processes and legal backing in every transaction."}},
+  {t:{es:"Misión",en:"Mission"}, v:{es:"Generar oportunidades de inversión inmobiliaria sólidas y rentables, acompañando a cada inversionista con información clara, asesoría profesional y seguridad jurídica en todo el proceso.",en:"To create solid, profitable real estate investment opportunities, supporting every investor with clear information, professional advice and legal certainty throughout the process."}},
+  {t:{es:"Visión",en:"Vision"}, v:{es:"Consolidarnos como la empresa inmobiliaria de referencia en Ecuador para inversionistas nacionales e internacionales, reconocida por el potencial de sus proyectos, la transparencia de su gestión y la confianza de sus clientes.",en:"To become Ecuador's benchmark real estate company for local and international investors, recognized for the potential of its projects, the transparency of its management and the trust of its clients."}},
 ];
 
 // Antes / ahora: 1 o 2 comparaciones. Usa fotos tomadas desde el mismo punto para que coincidan.
