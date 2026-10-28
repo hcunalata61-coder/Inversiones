@@ -1656,8 +1656,8 @@ function renderAbout(){
   items.forEach((s,i)=>{const c=ABOUT_CHAPTERS[i],n=i+1;
     bg.insertAdjacentHTML('beforeend',`<div class="cv-layer" data-i="${n}">${c.video?`<video src="${c.video}" muted loop playsinline></video>`:`<img src="${c.img}" alt="" loading="lazy" decoding="async">`}</div>`);
     box.insertAdjacentHTML('beforeend',`<div class="cv-ch" data-i="${n}">
-      <span class="cv-k"><i></i><span>${esc(t('cine.ch'))} 0${n} · ${esc(L(s.t))}</span></span>
-      <div class="cv-mask"><h3>${esc(L(c.head))}</h3></div>
+      <span class="cv-k"><i></i><span>${esc(t('cine.ch'))} 0${n}</span></span>
+      <div class="cv-mask"><h3>${esc(L(s.t))}</h3></div>
       <div class="cv-box"><p>${esc(L(s.v))}</p></div>
       <a class="cv-btn" href="${c.href}"><span class="o">${ic('arrow')}</span><span>${esc(L(c.cta))}</span></a></div>`);});
   cv.i=-1; cvUpdate();
