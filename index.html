@@ -504,6 +504,26 @@ dialog#viewer::backdrop{background:rgba(6,12,11,.9)}
 @media (max-width:900px){.story{grid-template-columns:1fr}.story-visual{display:none}.story-step{min-height:auto;opacity:1}.story-step .mobile-visual{display:block}}
 
 /* ============ ABOUT ============ */
+.about2{position:relative;overflow:hidden;background:#fff;isolation:isolate}
+.about2::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 55% 45% at 50% 30%,rgba(14,171,139,.12),transparent 70%),linear-gradient(rgba(14,171,139,.05) 1px,transparent 1px) 0 0/56px 56px,linear-gradient(90deg,rgba(14,171,139,.05) 1px,transparent 1px) 0 0/56px 56px;-webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 35%,#000 40%,transparent 100%);mask-image:radial-gradient(ellipse 70% 70% at 50% 35%,#000 40%,transparent 100%)}
+.about2-hero{display:grid;justify-items:center;text-align:center;gap:clamp(1.2rem,2.6vw,2rem);margin-bottom:clamp(40px,6vw,80px)}
+.about2-logo{width:min(720px,88vw);filter:drop-shadow(0 18px 40px rgba(14,171,139,.18))}
+.about-logo{display:block;width:100%;height:auto;overflow:visible}
+.about-logo .al-mark{transform-origin:15% 50%;animation:alMark 1.4s var(--ease) both}
+.about-logo .al-word,.about-logo rect,.about-logo .al-sub{animation:alWord 1.2s var(--ease) .25s both}
+@keyframes alMark{from{opacity:0;transform:translateX(-18px) scale(.92)}to{opacity:1;transform:none}}
+@keyframes alWord{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.about-logo .al-mark,.about-logo .al-word,.about-logo rect,.about-logo .al-sub{animation:none}}
+.about2-hero h2{font-size:var(--s-xl);font-weight:500;letter-spacing:-.02em;color:var(--muted);max-width:30ch}
+.about2-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,24px)}
+.about2-card{position:relative;background:#fff;border:1px solid #e1ebe8;border-radius:var(--r-lg);padding:clamp(24px,2.6vw,36px);display:grid;gap:.9rem;align-content:start;box-shadow:0 24px 60px -40px rgba(11,40,34,.35);transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s}
+.about2-card:hover{transform:translateY(-4px);border-color:rgba(14,171,139,.45);box-shadow:0 30px 70px -40px rgba(14,171,139,.45)}
+.about2-card .n{position:absolute;top:18px;right:22px;font-size:.78rem;font-weight:700;letter-spacing:.14em;color:#b5cfc9}
+.about2-card .ic{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;background:#e6f6f2;color:#0eab8b}
+.about2-card .ic .icon{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8}
+.about2-card h3{font-size:1.2rem;font-weight:600}
+.about2-card p{color:var(--muted);font-size:.96rem;line-height:1.6}
+@media (max-width:900px){.about2-cards{grid-template-columns:1fr}}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:start}
 .about-statement{font-size:clamp(1.4rem,2.4vw,2rem);line-height:1.35;font-weight:300;letter-spacing:-.015em}
 .about-statement strong{font-weight:600;color:var(--green-deep)}
@@ -683,9 +703,9 @@ dialog[open]{animation:dlg .55s var(--ease)}
     <a href="#inicio" aria-label="Inmobiliaria Bapersa — inicio"><span class="logo" role="img" aria-label="Inmobiliaria Bapersa"></span></a>
     <nav class="nav" aria-label="Principal" id="nav">
       <a href="#inicio" data-i18n="nav.home">Inicio</a>
+      <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
       <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
       <a href="#inversionistas" data-i18n="nav.investors">Inversionistas</a>
-      <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
     </nav>
     <div class="header-tools">
       <div class="lang" role="group" aria-label="Idioma / Language">
@@ -700,9 +720,9 @@ dialog[open]{animation:dlg .55s var(--ease)}
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
   <nav aria-label="Móvil">
     <a href="#inicio" data-i18n="nav.home">Inicio</a>
+    <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
     <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
     <a href="#inversionistas" data-i18n="nav.investors">Inversionistas</a>
-    <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
   </nav>
   <a class="btn btn-primary" href="#proyectos" data-i18n="cta.explore">Explorar oportunidades</a>
 </div>
@@ -724,6 +744,18 @@ dialog[open]{animation:dlg .55s var(--ease)}
         <button class="circle-btn" type="button" id="hero-next" data-i18n-aria="hero.next" aria-label="Siguiente"><svg class="icon" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- SOBRE BAPERSA -->
+<section class="section about2" id="nosotros" aria-labelledby="about-title">
+  <div class="wrap">
+    <div class="about2-hero rv">
+      <span class="eyebrow" data-i18n="about.eyebrow">Sobre Bapersa</span>
+      <div class="about2-logo"><svg class="about-logo" viewBox="0 0 588.85 130.05" role="img" aria-labelledby="about-logo-t"><title id="about-logo-t">Inmobiliaria Bapersa</title><g fill="#0eab8b"><g class="al-mark"><path d="M95.12,61.5c2.32,6.12,4.63,12.25,6.95,18.38.25.66.42,1.44,1.08,1.25.43-.04.66-.05.89-.08,4.92-.62,9.83-1.28,14.75-1.83,1.67-.18,2.97-.79,4.03-2.42,1.13-1.74,2.49-3.28,3.8-4.85.59-.71.71-1.36.43-2.31-.98-3.25-1.88-6.53-2.81-9.8-4.31-15.15-8.63-30.3-12.89-45.47-.37-1.31-.8-1.62-1.93-1.32-3.27.85-6.55,1.63-9.86,2.27-1.06.2-1.77.75-2.44,1.6-3.9,4.93-7.77,9.88-11.73,14.75-.84,1.03-.92,1.83-.43,3.11,3.43,8.89,6.79,17.81,10.17,26.72Z"/><path d="M140.1,29.41c-1.68-7.48-3.35-14.97-5.01-22.46-.37-1.68-.96-2.8-2.64-3.25-3.81-1.01-7.57-2.33-11.33-3.57-.88-.29-1.45-.14-2.02.79-1.98,3.24-4.01,6.44-6.11,9.58-.72,1.07-.79,1.99-.41,3.25,1.5,5,2.92,10.03,4.35,15.06,3.85,13.52,7.7,27.04,11.52,40.56.22.79.57,1.17,1.25,1.41,2.62.89,5.21,1.85,7.81,2.81,1.09.4,1.66.38,1.93-1.31.92-5.78,2.06-11.51,3.1-17.27.49-2.72.96-5.44,1.47-8.33-.05-.22-.13-.6-.22-.98-1.23-5.44-2.46-10.87-3.68-16.31Z"/><path d="M61.03,66.36c-1.45-5.77-2.92-11.54-4.26-17.35-.36-1.55-1.01-1.76-2.19-1.59-2.7.4-5.42.64-8.13,1.02-5.01.72-10.07.91-15.03,2.05-.93.21-2.26.05-2.1,1.96.02.26.02.53.05.79.52,4.39.8,8.83,1.63,13.14,1.25,6.52,2.89,12.93,4.31,19.4.32,1.44.8.81,1.39.37,7.89-5.79,15.78-11.58,23.7-17.32.97-.71.89-1.45.63-2.49Z"/><path d="M82.04,34.55c-7.83,3.94-15.65,7.9-23.5,11.79-.93.46-.79,1-.58,1.83,1.55,6.16,3.07,12.32,4.59,18.49.16.65.3,1.23.81,1.66,5.1,4.31,10.19,8.65,15.61,13.26,1.26-15.99,2.49-31.54,3.72-47.2-.35.08-.52.09-.66.16Z"/><path d="M99.7,79.89c-3.98-10.22-7.83-20.5-11.73-30.77-1.1-2.91-2.21-5.81-3.31-8.72-.1.05-.2.1-.3.15-.54,6.52-1.09,13.05-1.62,19.57-.56,7.01-1.09,14.02-1.66,21.03-.09,1.05.12,1.54,1.08,1.72,3.55.69,7.11,1.34,10.62,2.27,2.32.62,4.19.38,6.08-1.53,1.19-1.21,1.54-1.96.85-3.73Z"/><path d="M162.64,32.96c-6.86-1.81-13.71-3.65-20.56-5.5-.89-.24-.96.04-.74.99,1.24,5.37,2.43,10.76,3.63,16.14.16.7.34,1.31.97,1.04,4.35-.49,8.54-.97,12.72-1.44.62-.07,1.01-.47,1.26-1.15,1.07-2.85,2.16-5.7,3.28-8.52.34-.84.33-1.3-.58-1.54Z"/><path d="M32.51,68.28c-5.63,5.58-13.66,12.73-19.37,18.37,3.15,2.21,6.03,4.22,8.88,6.26.56.4,1.06.63,1.72.29,3.22-1.67,8.87-4.88,12.1-6.51.52-.26.86-.57.67-1.34-1.39-5.85-2.76-11.71-4.01-17.06Z"/><path d="M105.55,106.6c.09-6.51.15-13.02.27-19.52.02-.92-.26-1.42-.88-1.92-2.75-2.26-2.73-2.28-5.39.13-.31.28-.62.61-.97.81-.85.48-1.05,1.13-.87,2.25.72,4.61,1.31,9.25,1.98,13.88.66,4.55,1.34,9.09,2.05,13.89,3.35-3.77,3.75-4.78,3.81-9.51Z"/><path d="M61.26,70.05c-3.45,2.54-6.7,4.95-9.97,7.32-.58.42-.56.85-.29,1.48,2.91,6.78,5.81,13.57,8.88,20.78.47-10.13.92-19.73,1.37-29.58Z"/><path d="M122.24,79.71c-1.26-2.02-2.6-2.46-4.39-1.68-.83.36-1.81.78-2.54.71-4.32-.38-8.47,1.3-12.76,1.45.14,1.02.61,1.14.95,1.44,2.28,2.01,4.97,2.96,7.29,4.76,2.67,2.07,5.5,3.6,8.22,5.5.4.28.83.28,1.26.12,2.68-.98,5.36-1.95,8.39-3.05-2.35-3.35-4.51-6.16-6.43-9.25Z"/><path d="M21.98,92.72c-2.72-1.87-5.42-3.8-8.12-5.7-.16-.11-.32-.21-.57-.38-.7,0-.53.73-.59,1.21-.69,5.58-1.2,11.19-2.1,16.72-.43,2.64.17,4.4,1.75,6.09.68.73.92.58,1.35-.21,2.88-5.32,5.76-10.64,8.69-15.91.52-.94.35-1.32-.4-1.83Z"/><path d="M127.75,89.2c-2.07.76-4.15,1.49-6.23,2.18-.68.22-.95.67-.96,1.59-.05,5.56-.13,11.13-.2,16.69.13.08.26.16.39.24,1.63-2.38,3.27-4.75,4.89-7.15.19-.27.3-.66.38-1.03.84-3.81,1.64-7.64,2.5-11.44.25-1.1.11-1.42-.77-1.1Z"/><path d="M53.43,83.25c-.16-.44-.18-1.28-.91-1.03-.25,5.29-.48,10.59-.75,15.9-.04.83.07,1.52.49,2.13,1.98,2.86,3.93,5.75,6.13,8.96.42-3.19,2.3-9.41,1.39-12.27-1.86-5.85-4.29-7.97-6.35-13.69Z"/><path d="M27.43,68.1c-4.49-.35-8.79-1.22-12.89,2.05-3.38,2.7-7.22,4.61-11.16,7.05,2.9.48,5.23-.06,7.54-1.19,4.71-2.3,9.5-4.41,14.24-6.62.75-.35,1.64-.4,2.27-1.29Z"/><path d="M139.77,21.13c-.21.56.9,4.32,1.39,4.45,3.39.91,6.8,1.79,10.52,2.76-1.2-2.61-2.25-4.86-3.26-7.14-.29-.66-.75-.71-1.29-.69-2.21.1-4.42.2-6.63.3-.26.01-.56-.11-.72.31Z"/><path d="M28.48,66.42c.63.04.97-.11.87-.97-.43-3.6-.82-7.21-1.25-10.81-.04-.3-.21-.68-.42-.81-.44-.27-.58.28-.73.58-1.83,3.73-3.63,7.48-5.6,11.55,2.58.16,4.85.29,7.12.46Z"/><path d="M97.35,87.4c-.72,4.24-1.5,8.47-2.13,12.73-.19,1.29-.96,2.56-.09,4.02,2.21,3.73,4.32,7.54,6.47,11.32.13-.07.26-.13.38-.2-1.34-9.29-2.68-18.57-4.01-27.86-.2,0-.41,0-.61-.01Z"/><path d="M23.15,111.33c-.66-2.75-2.35-4.66-3.98-6.63-.45-.54-.71-.44-1.02.15-1.11,2.08-2.25,4.14-3.39,6.2-.38.69-.36,1.08.46,1.11,2.47.06,4.94.12,7.4.25.53.03.56-.26.57-.68-.01-.13,0-.27-.04-.39Z"/><path d="M110.8,114.09q-4.41-2.16-7.18,2.18c-.23.35-.67.67-.52,1.16.17.55.69.32,1.05.35,1.19.11,2.38.16,3.58.24.62.04,1.25.08,1.87.12.62.04,1.25.11,1.87.11.35,0,.82.27.97-.43.2-.93-.85-3.35-1.65-3.74Z"/><path d="M157.95,45.84c-2.92.39-5.85.71-8.78,1.06,0,.09-.01.18-.02.27,2.43.82,4.85,1.67,7.29,2.46,2.57.84,2.53.82,2.65-2.34.04-1.06-.08-1.59-1.14-1.45Z"/><path d="M65.1,107.35c-.72-.63-1.6-1.02-2.32-1.64-1.3-1.12-1.87-.94-2.26,1.04-.68,3.44-.8,3.4,2.21,3.6.45.03.92.13,1.36.06.54-.08,1.39.55,1.56-.51.15-.87.17-1.93-.55-2.55Z"/><path d="M143.13,19.03c.11-.02.22-.07.63-.21-2.15-2.96-4.18-5.74-6.2-8.51-.09.06-.18.12-.27.17.36,1.65.71,3.29,1.07,4.94.89,4.12,1.15,4.32,4.78,3.62Z"/><path d="M6.23,74.49c.18-.12.37-.4.13-.64-1.19-1.12-2.36-2.28-3.62-3.31-.8-.66-1.63.12-2.74.25,1.05,1.84,1.96,3.42,2.86,5.02.16.29.31.57.66.36.91-.55,1.82-1.1,2.71-1.68Z"/><path d="M119.34,106.05c0-.31.04-.6-.34-.76-.9-.37-2.47.69-3.1,1.99-.78,1.61.58,1.48,1.12,1.98.39.36.9.56,1.32.88.8.6,1.14.34,1.06-.73-.02-1.12-.04-2.24-.06-3.36Z"/></g><g class="al-word"><path d="M253.76,54.78c0,11.58-7.89,18.28-23.02,18.28h-29.76V6.06h28.12c14.39,0,21.79,6.99,21.79,17.42,0,6.7-2.96,11.87-7.65,14.74,6.41,2.39,10.52,8.13,10.52,16.56ZM213.98,17.06v16h13.41c6.58,0,10.16-2.72,10.16-8.05s-3.58-7.95-10.16-7.95h-13.41ZM240.82,52.6c0-5.8-3.8-8.55-10.89-8.55h-15.95v17h15.95c7.09,0,10.89-2.56,10.89-8.45Z"/><path d="M297.56,59.06h-26.06l-4.97,14h-14.1l25.65-67h13.15l25.74,67h-14.44l-4.97-14ZM293.75,47.06l-9.17-25.78-9.17,25.78h18.34Z"/><path d="M369.37,30.61c0,15.07-9.71,24.45-25.24,24.45h-12.15v18h-13V6.06h25.15c15.52,0,25.24,9.38,25.24,24.55ZM355.82,30.61c0-7.29-4.07-11.55-12.11-11.55h-10.73v23h10.73c8.05,0,12.11-4.26,12.11-11.45Z"/><path d="M418.98,61.06v12h-44V5.06h43v13h-30v15h27v12h-27v16h31Z"/><path d="M463.75,73.06l-11.3-19h-12.47v19h-13V6.06h24.31c15,0,24.39,9.28,24.39,24.31,0,10.05-4.25,17.42-11.55,21.15l12.6,21.54h-12.97ZM450.66,19.06h-10.68v23h10.68c8.02,0,12.06-4.34,12.06-11.5s-4.05-11.5-12.06-11.5Z"/><path d="M478.49,66.46l4.54-11.73c4.88,4.13,12.15,7.02,19.09,7.02,7.93,0,11.16-3.08,11.16-7.22,0-12.6-33.62-3.94-33.62-28.95,0-11.45,7.93-20.97,24.37-20.97,7.27,0,14.71,2.02,20.08,5.96l-4.13,11.83c-5.37-3.56-10.91-5.29-16.03-5.29-7.93,0-10.99,3.46-10.99,7.7,0,12.41,33.62,3.85,33.62,28.57,0,11.25-8.01,20.87-24.54,20.87-9.17,0-18.42-3.17-23.55-7.79Z"/><path d="M569.45,59.06h-26.05l-4.97,14h-14.1l25.65-67h13.15l25.73,67h-14.43l-4.97-14ZM565.64,47.06l-9.17-25.78-9.17,25.78h18.34Z"/></g><rect x="178.98" y="2.06" width="11" height="117" rx="1" ry="1" transform="translate(368.96 121.12) rotate(-180)"/><text x="196.53" y="113.07" font-family="Montserrat, sans-serif" font-size="37" font-weight="400" class="al-sub">Inmobiliaria</text></g></svg></div>
+      <h2 id="about-title" data-i18n="about.title">Una visión inmobiliaria orientada al futuro.</h2>
+    </div>
+    <div class="about2-cards" id="about-slots"></div>
   </div>
 </section>
 
@@ -832,22 +864,6 @@ dialog[open]{animation:dlg .55s var(--ease)}
 </section>
 
 <!-- ABOUT -->
-<section class="section" id="nosotros" aria-labelledby="about-title" style="background:var(--stone)">
-  <div class="wrap about-grid">
-    <div class="about-lead rv">
-      <span class="eyebrow" data-i18n="about.eyebrow">Sobre Bapersa</span>
-      <h2 id="about-title" style="font-size:var(--s-2xl)" data-i18n="about.title">Una visión inmobiliaria orientada al futuro.</h2>
-      <p class="about-statement" data-i18n-html="about.statement">Proyectos en <strong>ubicaciones identificables</strong>, información <strong>disponible antes de decidir</strong> y una atención que acompaña cada etapa.</p>
-      <p class="body" data-i18n="about.body">Bapersa desarrolla y comercializa proyectos inmobiliarios en Ecuador para compradores que viven en el país y en el extranjero. Nuestro compromiso es que cada persona entienda qué está adquiriendo, con documentación a la vista y un interlocutor que responda sus preguntas.</p>
-    </div>
-    <div class="rv">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap">
-        <h3 style="font-size:1rem" data-i18n="about.slotsTitle">Información corporativa</h3>
-      </div>
-      <div class="slots" id="about-slots"></div>
-    </div>
-  </div>
-</section>
 
 <!-- TESTIMONIALS -->
 
@@ -865,8 +881,8 @@ dialog[open]{animation:dlg .55s var(--ease)}
       </div>
       <div><h4 data-i18n="foot.nav">Navegación</h4><ul>
         <li><a href="#inicio" data-i18n="nav.home">Inicio</a></li>
-        <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
         <li><a href="#nosotros" data-i18n="foot.about">Sobre nosotros</a></li>
+        <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
         <li><a href="#inversionistas" data-i18n="nav.investors">Inversionistas</a></li></ul></div>
       <div><h4 data-i18n="foot.projects">Proyectos</h4><ul id="foot-projects"></ul></div>
       <div><h4 data-i18n="foot.contact">Contacto</h4><div style="display:grid;gap:.9rem" id="foot-contact"></div></div>
@@ -993,8 +1009,6 @@ const ABOUT_SLOTS = [
   {t:{es:"Historia",en:"History"}, v:{es:"Inmobiliaria Bapersa nació en Quito hace dos años para ofrecer lotes y terrenos en ubicaciones estratégicas del Ecuador, con procesos claros y atención cercana.",en:"Inmobiliaria Bapersa was founded in Quito two years ago to offer lots and land in strategic locations across Ecuador, with clear processes and close guidance."}},
   {t:{es:"Misión",en:"Mission"}, v:{es:"Ofrecer lotes y terrenos en ubicaciones estratégicas de Ecuador, con información clara y acompañamiento cercano, para que cada cliente construya su patrimonio con confianza.",en:"To offer lots and land in strategic locations across Ecuador, with clear information and close guidance, so every client can build their wealth with confidence."}},
   {t:{es:"Visión",en:"Vision"}, v:{es:"Ser la inmobiliaria de referencia en la venta de lotes y terrenos en Ecuador, reconocida por la transparencia de sus procesos y la confianza de clientes nacionales e internacionales.",en:"To be Ecuador's reference company for lots and land, recognized for transparent processes and the trust of local and international clients."}},
-  {t:{es:"Equipo profesional",en:"Professional team"}, v:{es:"30 asesores comerciales, junto a los equipos de marketing, contabilidad y secretaría, acompañan a cada cliente desde la primera visita hasta la escrituración.",en:"30 sales advisors, together with our marketing, accounting and administrative teams, guide every client from the first visit to the deed."}},
-  {t:{es:"Proyectos",en:"Projects"}, v:{es:"Activos: Club Castamar, Residencial Killary y Residencial San Camilo. Finalizados: Residencial Terranova y Residencial Alegría.",en:"Active: Club Castamar, Residencial Killary and Residencial San Camilo. Completed: Residencial Terranova and Residencial Alegría."}}
 ];
 
 // Antes / ahora: 1 o 2 comparaciones. Usa fotos tomadas desde el mismo punto para que coincidan.
@@ -1556,7 +1570,8 @@ function initInvest(){
 }
 
 function renderAbout(){
-  $('#about-slots').innerHTML=ABOUT_SLOTS.filter(s=>s.v).map(s=>`<div class="slot"><h3>${esc(L(s.t))}</h3><p>${esc(L(s.v))}</p></div>`).join('');
+  const icons=['book','scale','key'];
+  $('#about-slots').innerHTML=ABOUT_SLOTS.filter(s=>s.v).map((s,i)=>`<article class="about2-card rv"><span class="n">0${i+1}</span><span class="ic">${ic(icons[i]||'check')}</span><h3>${esc(L(s.t))}</h3><p>${esc(L(s.v))}</p></article>`).join('');
 }
 function renderTesti(){ if(!$('#testi-track'))return;
   // Solo se publican testimonios reales con autorización del cliente (consent:true).
@@ -1749,7 +1764,7 @@ addEventListener('keydown',e=>{if(e.key==='Escape'&&menuOpen())toggleMenu(false)
 function onScroll(){
   const y=scrollY; $('#header').classList.toggle('scrolled',y>40); $('#to-top').classList.toggle('show',y>innerHeight*.9);
   // enlace activo
-  let cur='inicio'; for(const id of ['inicio','proyectos','inversionistas','nosotros']){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<innerHeight*.4)cur=id;}
+  let cur='inicio'; for(const id of ['inicio','nosotros','proyectos','inversionistas']){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<innerHeight*.4)cur=id;}
   $$('#nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
 }
 addEventListener('scroll',onScroll,{passive:true});
