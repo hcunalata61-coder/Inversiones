@@ -772,8 +772,8 @@ dialog[open]{animation:dlg .55s var(--ease)}
     <nav class="nav" aria-label="Principal" id="nav">
       <a href="#inicio" data-i18n="nav.home">Inicio</a>
       <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
-      <a href="#inversionistas" data-i18n="nav.investors">Inversionistas</a>
       <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
+      <a href="#inversionistas" data-i18n="nav.investors">Inversionistas</a>
     </nav>
     <div class="header-tools">
       <div class="lang" role="group" aria-label="Idioma / Language">
@@ -789,8 +789,8 @@ dialog[open]{animation:dlg .55s var(--ease)}
   <nav aria-label="Móvil">
     <a href="#inicio" data-i18n="nav.home">Inicio</a>
     <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
-    <a href="#inversionistas" data-i18n="nav.investors">Inversionistas</a>
     <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
+    <a href="#inversionistas" data-i18n="nav.investors">Inversionistas</a>
   </nav>
   <a class="btn btn-primary" href="#proyectos" data-i18n="cta.explore">Explorar oportunidades</a>
 </div>
@@ -869,6 +869,21 @@ dialog[open]{animation:dlg .55s var(--ease)}
   </div>
 </section>
 
+<!-- PROYECTOS: FIRMAS (coverflow 3D) -->
+<section class="cf" id="proyectos" aria-labelledby="cf-title" aria-roledescription="carrusel" tabindex="-1">
+  <div class="cf-amb" aria-hidden="true"><img id="cf-amb" alt=""></div>
+  <div class="wrap cf-wrap">
+    <div class="cf-head rv">
+      <span class="cf-eyebrow"><i></i><span data-i18n="cf.eyebrow">Firmas realizadas</span><i></i></span>
+      <h2 id="cf-title" data-i18n-html="cf.titleHtml">Clientes que ya <em>aseguraron su inversión.</em></h2>
+    </div>
+    <div class="cf-stage" id="cf-stage"></div>
+    <button class="cf-nav prev" type="button" id="cf-prev" data-i18n-aria="hero.prev" aria-label="Anterior"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button>
+    <button class="cf-nav next" type="button" id="cf-next" data-i18n-aria="hero.next" aria-label="Siguiente"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    <div class="cf-dots" id="cf-dots" role="tablist"></div>
+  </div>
+</section>
+
 <!-- LEGAL -->
 
 <!-- TRUST -->
@@ -927,20 +942,6 @@ dialog[open]{animation:dlg .55s var(--ease)}
   </div>
 </section>
 
-<!-- PROYECTOS: FIRMAS (coverflow 3D) -->
-<section class="cf" id="proyectos" aria-labelledby="cf-title" aria-roledescription="carrusel" tabindex="-1">
-  <div class="cf-amb" aria-hidden="true"><img id="cf-amb" alt=""></div>
-  <div class="wrap cf-wrap">
-    <div class="cf-head rv">
-      <span class="cf-eyebrow"><i></i><span data-i18n="cf.eyebrow">Firmas realizadas</span><i></i></span>
-      <h2 id="cf-title" data-i18n-html="cf.titleHtml">Clientes que ya <em>aseguraron su inversión.</em></h2>
-    </div>
-    <div class="cf-stage" id="cf-stage"></div>
-    <button class="cf-nav prev" type="button" id="cf-prev" data-i18n-aria="hero.prev" aria-label="Anterior"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg></button>
-    <button class="cf-nav next" type="button" id="cf-next" data-i18n-aria="hero.next" aria-label="Siguiente"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
-    <div class="cf-dots" id="cf-dots" role="tablist"></div>
-  </div>
-</section>
 
 <!-- ABOUT -->
 
@@ -961,8 +962,8 @@ dialog[open]{animation:dlg .55s var(--ease)}
       <div><h4 data-i18n="foot.nav">Navegación</h4><ul>
         <li><a href="#inicio" data-i18n="nav.home">Inicio</a></li>
         <li><a href="#nosotros" data-i18n="foot.about">Sobre nosotros</a></li>
-        <li><a href="#inversionistas" data-i18n="nav.investors">Inversionistas</a></li>
-        <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li></ul></div>
+        <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+        <li><a href="#inversionistas" data-i18n="nav.investors">Inversionistas</a></li></ul></div>
       <div><h4 data-i18n="foot.projects">Proyectos</h4><ul id="foot-projects"></ul></div>
       <div><h4 data-i18n="foot.contact">Contacto</h4><div style="display:grid;gap:.9rem" id="foot-contact"></div></div>
     </div>
@@ -1881,7 +1882,7 @@ addEventListener('keydown',e=>{if(e.key==='Escape'&&menuOpen())toggleMenu(false)
 function onScroll(){
   const y=scrollY; $('#header').classList.toggle('scrolled',y>40); $('#to-top').classList.toggle('show',y>innerHeight*.9);
   // enlace activo
-  let cur='inicio'; for(const id of ['inicio','nosotros','inversionistas','proyectos']){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<innerHeight*.4)cur=id;}
+  let cur='inicio'; for(const id of ['inicio','nosotros','proyectos','inversionistas']){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<innerHeight*.4)cur=id;}
   $$('#nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
 }
 addEventListener('scroll',onScroll,{passive:true});
